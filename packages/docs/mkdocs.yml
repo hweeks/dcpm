@@ -1,0 +1,16 @@
+site_name: Docker Compose Package Manager
+repo_name: 'hweeks/dcpm'
+repo_url: 'https://github.com/hweeks/dcpm'
+theme:
+  logo:
+    icon: 'tab'
+  palette:
+    primary: 'orange'
+    accent: 'deep orange'
+  name: 'material'
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true

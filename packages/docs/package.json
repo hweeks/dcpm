@@ -1,0 +1,15 @@
+{
+  "name": "@dcpm/docs",
+  "version": "0.0.0",
+  "description": "The docs site for dcpm",
+  "author": "Harris Weeks <root@hweeks.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/server.js",
+  "publishConfig": {
+    "access": "private"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}

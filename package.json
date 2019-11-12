@@ -1,0 +1,17 @@
+{
+  "name": "dcpm",
+  "version": "1.0.0",
+  "description": "the monorepo for the dcpm cli and server",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.18.4"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "typescript": "^3.7.2"
+  }
+}
