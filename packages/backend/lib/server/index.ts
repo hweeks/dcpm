@@ -1,7 +1,9 @@
 import express, {Application} from "express";
+import bodyParser from 'body-parser'
 import helmet from "helmet";
 import mongoose from "mongoose";
 import { addGraphLayer } from "../schema/middleware";
+import { UserRouter } from "../models/user";
 
 const startMongoose = async () => {
   let url = "mongodb://mongo:27017/dcpm"
@@ -15,7 +17,9 @@ const startMongoose = async () => {
 
 const buildAndReturnApp = async (app : Application) => {
   app.use(helmet())
+  app.use(bodyParser.json())
   await startMongoose()
+  app.use('/', UserRouter)
   addGraphLayer(app)
   app.listen(3000)
   return app

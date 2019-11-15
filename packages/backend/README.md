@@ -17,12 +17,13 @@ The backend is going to be very basic. It will be two things:
 
 For local dev we'd recommend:
 
-  * postman/paw/insomnia
+  * REST client
   * chrome debug tools
+  * docker and docker-compose
 
-Run: `yarn watch` to get a locally running stack on `localhost:4000`
+Run: `yarn dev:up` to get a locally running stack on `localhost:3000`
 
-Hit the endpoint with your REST client and attach chromes debugger tools from `chrome://inspect` or your ide if you prefer.
+Hit the endpoint with your REST client and attach chrome's debugger tools from `chrome://inspect` or your ide if you prefer.
 
 ## Stack
 
@@ -31,3 +32,37 @@ This is built on:
   * typescript
   * mongoose
   * express
+
+## urls
+
+### /api/user/create
+
+TYPE: post
+
+PAYLOAD: {
+  username: string,
+  passowrd: string,
+}
+
+RETURN: {
+  token: string,
+}
+
+### /api/user/login
+
+TYPE: post
+
+PAYLOAD: {
+  username: string,
+  passowrd: string,
+}
+
+RETURN: {
+  token: string,
+}
+
+## graphql
+
+### /api/graphql
+
+It's that graphQL web interface on get, ql on post.

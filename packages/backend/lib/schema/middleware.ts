@@ -4,14 +4,13 @@ import graphqlHTTP from "express-graphql";
 import {query} from './query';
 import {mutation} from './mutation';
 import blob from './transforms/blob'
-import user from './transforms/user'
 
 const schema = new GraphQLSchema({
   query,
   mutation
 });
 
-const root  = {...blob, ...user}
+const root  = {...blob}
 
 export const addGraphLayer = (app : Application) => {
   app.post("/api/graphql", graphqlHTTP({

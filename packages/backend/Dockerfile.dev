@@ -1,25 +1,17 @@
-FROM node:12-alpine
+FROM node:12
 
 EXPOSE 3000
+EXPOSE 9229
 
 ARG NODE_ENV=development
-ARG USER=app
-ARG GROUP=app
 
 USER root
 
-ADD package.json /app/be/package.json
-ADD lib /app/be/lib
-ADD dist /app/be/dist
+COPY . /app/be/
 
-RUN npm install -g nodemon && cd /app/be && yarn install &&\
-    addgroup -S $GROUP &&\
-    adduser -S -G $USER $GROUP &&\
-    chown -R app:app /app/be &&\
-    chmod -R 0744 /app/be
+RUN cd /app/be && yarn install
 
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app/be
 
-USER app
-CMD nodemon --inspect-brk=0.0.0.0 dist/server
+USER root
