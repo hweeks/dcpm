@@ -4,11 +4,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    command: yarn dev
     ports:
       - "3000:3000"
       - "9229:9229"
     volumes:
-      - ./dist:/app/dist
+      - ./lib:/app/be/lib
     links:
       - mongo
   mongo:
