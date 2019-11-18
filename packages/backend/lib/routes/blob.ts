@@ -5,6 +5,7 @@ import { Blob, IBlobDoc, IBlobPayload, VersionConfig } from "../models/blob";
 import { fileMiddleware, connection, gfs, } from "../server/db";
 import semver from 'semver'
 import { Types } from "mongoose";
+import { ObjectID } from "bson";
 
 const router = Router();
 
@@ -114,6 +115,7 @@ const addBlob = async (req: Request, res: Response, next: NextFunction) => {
   }
   try {
     await updateOrCreateBlob(sanitizedPayload, foundUser, file)
+    res.send('ok')
     next()
     return
   } catch (error) {
@@ -123,6 +125,47 @@ const addBlob = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 router.post('/api/blob/add', fileMiddleware.single('blob'), addBlob)
+
+const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+  const {token} = req.headers
+  const safeToken = Array.isArray(token) ? token[0] : token || ''
+  let {username, action, name} = req.body
+  const tokenParsed = decodeToken(safeToken)
+  const foundUser = await User.findById(tokenParsed.payload)
+  if (!foundUser) {
+    next(new Error("I'm not seeing any users that match your token. Verify publish and account status."))
+    return
+  }
+  const foundBlob = await Blob.findOne({name})
+  if (!foundBlob) {
+    next(new Error("I'm not seeing any blobs that match your search."))
+    return
+  }
+  const toBeChangedUser = await User.findOne({username})
+  if (!toBeChangedUser) {
+    next(new Error(`I'm not abe to find the user ${username}. Are you sure you got that correct?`))
+    return
+  }
+  const currentBlob = foundBlob.toObject()
+  if (action === 'add') {
+    const alreadyThereUser = currentBlob.authors.find((user: ObjectID) => user.toString() === toBeChangedUser.id)
+    if (alreadyThereUser) {
+      next(new Error(`It looks like ${username} is already here. I'm not going to do anything.`))
+      return
+    }
+    currentBlob.authors.push(toBeChangedUser.id)
+  } else if (action === 'remove') {
+    currentBlob.authors = currentBlob.authors.filter((user: ObjectID) => user.toString() !== toBeChangedUser.id)
+  } else {
+    next(new Error(`I can only add or remove a user, I have no idea how to ${action} a user.`))
+    return
+  }
+  await foundBlob.updateOne(currentBlob)
+  res.send('ok')
+  next()
+}
+
+router.post('/api/blob/user', updateUser)
 
 const getBlob = async (req: Request, res: Response, next: NextFunction) => {
   const {blob, version} = req.params
