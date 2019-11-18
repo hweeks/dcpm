@@ -9,17 +9,23 @@ The dcpm has two fundamental chunks:
 
 The dcpm backend will of course be the first package available from dcpm. Checkout the history of this monorepo to watch how I steer and guide this project via day one dogfooding.
 
-## Manifest
+### Manifest
 
 This is the main way to define and share your configs. It contains information about what you're pushing. It also can define versions of `docker` and `docker-compose` you are supporting. To learn more:
 
 See [Manifest](/manifest/)
 
-## Use
+### Use
 
 The main way to interact with our configs. The cli tool allows pulling and pushing of your configs. To learn more:
 
 See [Use](/use/)
+
+### Blob
+
+What does a response from our api look like? To learn more:
+
+See [Blob](/blob/)
 
 ## What is this?
 

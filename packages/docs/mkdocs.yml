@@ -1,6 +1,6 @@
 site_name: Docker Compose Package Manager
 repo_name: 'hweeks/dcpm'
-repo_url: 'https://github.com/hweeks/dcpm'
+repo_url: 'https://github.com/hweeks/dcpm/tree/master/packages/docs'
 theme:
   logo:
     icon: 'tab'

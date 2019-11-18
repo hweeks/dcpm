@@ -1,59 +1,62 @@
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInputObjectType,
-} from "graphql";
-import { Document, Schema, Model, model } from "mongoose";
+import { Document, Schema, Model, model, Types, } from "mongoose";
 
-const BlobSchema = new Schema({
+export const BlobSchema = new Schema({
+  owner: {
+    type: Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   name: {
     type: String,
-    unique: true,
     required: true,
-    trim: true
+    unique: true
   },
-  file: {
+  about: String,
+  versions: [
+    {
+      version: {
+        type: String,
+        required: true
+      },
+      file: {
+        type: Types.ObjectId,
+        required: true
+      },
+    }
+  ],
+  scm: {
     type: String,
-  }
+    required: true
+  },
+  authors: [
+    {
+      type: Types.ObjectId,
+      ref: 'User'
+    }
+  ],
 });
 
-export interface IBlobDoc extends Document {
-  name: string;
-  file: string;
+export interface VersionConfig {
+  version: string;
+  file: Types.ObjectId,
 }
 
-export const BlobInfoType = new GraphQLObjectType({
-  name: "BlobInfo",
-  fields: {
-    id: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    name: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    file: {
-      type: new GraphQLList(GraphQLString)
-    }
-  }
-});
+export interface IBlobPayload {
+  owner: Types.ObjectId,
+  name: string,
+  about?: string,
+  versions: VersionConfig[],
+  scm: string,
+  authors: Types.ObjectId[],
+}
 
-export const BlobInfoInputType = new GraphQLInputObjectType({
-  name: "BlobInfoInput",
-  fields: {
-    id: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    name: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    file: {
-      type: new GraphQLList(GraphQLString)
-    }
-  }
-});
+export interface IBlobDoc extends Document {
+  owner: Types.ObjectId,
+  name: string,
+  about?: string,
+  versions: VersionConfig[],
+  scm: string,
+  authors: Types.ObjectId[],
+}
 
-const Blob = model<IBlobDoc, Model<IBlobDoc>>("Blob", BlobSchema);
-
-export default Blob;
+export const Blob = model<IBlobDoc, Model<IBlobDoc>>("Blob", BlobSchema);
