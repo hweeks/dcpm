@@ -2,7 +2,7 @@ import { Router, NextFunction, Response, Request } from "express";
 import jws from 'jws';
 import { User, IUserDoc } from "../models/user";
 import { Blob, IBlobDoc, IBlobPayload, VersionConfig } from "../models/blob";
-import { fileMiddleware, } from "../server/db";
+import { fileMiddleware, connection, gfs, } from "../server/db";
 import semver from 'semver'
 import { Types } from "mongoose";
 
@@ -132,12 +132,18 @@ const getBlob = async (req: Request, res: Response, next: NextFunction) => {
   }
   const blobObject = (foundBlob as IBlobDoc).toObject()
   const foundVersion : VersionConfig = blobObject.versions.find((currentVersion: VersionConfig) => {
-    return currentVersion.version === version
+    return version.startsWith(currentVersion.version)
   })
   if (!foundVersion) {
-    next(new Error(`We can't find a blob version ${version}. Check the version and try again.`))
+    next(new Error(`We can't find a blob version ${version.replace('.zip', '')}. Check the version and try again.`))
   }
-  // TODO How to upload files?
+  const readStream = gfs.createReadStream({
+    _id: foundVersion.file.toString()
+  }).on('error', () => {
+    throw new Error('Looks like we just can\'t handle that sort of request. Try again?')
+  })
+  res.set('Content-Type', 'application/zip')
+  readStream.pipe(res)
 }
 
 router.get('/api/blob/get/:blob/:version', getBlob)

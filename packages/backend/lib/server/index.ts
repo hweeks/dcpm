@@ -1,4 +1,4 @@
-import express, {Application} from "express";
+import express, {Application, Request, Response, NextFunction} from "express";
 import bodyParser from 'body-parser'
 import helmet from "helmet";
 import { startMongoose } from './db'
@@ -12,6 +12,11 @@ const buildAndReturnApp = async (app : Application) => {
   await startMongoose()
   app.use('/', UserRouter)
   app.use('/', BlobRouter)
+  app.use('*', (error: Error, req: Request, res: Response, next: NextFunction) => {
+    const {message} = error
+    res.status(500).send(message)
+    next()
+  })
   app.listen(3000)
   return app
 }
