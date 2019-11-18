@@ -21,11 +21,11 @@ The main way to interact with our configs. The cli tool allows pulling and pushi
 
 See [Use](/use/)
 
-### Blob
+### backend
 
-What does a response from our api look like? To learn more:
+What is does our API need?
 
-See [Blob](/blob/)
+See [API](/api/)
 
 ## What is this?
 
