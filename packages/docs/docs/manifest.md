@@ -10,6 +10,7 @@ A manifest for a deployed package looks like this:
 about:
   name: 'My fancy config'
   author: 'hweeks <root@hweeks.com>'
+  readme: './README.md'
   version: '1.0.0'
 remotes:
   scm: 'https://github.com/me/my-fancy-config'

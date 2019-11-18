@@ -1,10 +1,7 @@
-import { Document, Schema, Model, model } from "mongoose";
+import { Document, Schema, Model, model, HookNextFunction } from "mongoose";
 import bcrypt from 'bcrypt'
-import {promisify} from 'util'
-import { Request, Response, Router, NextFunction } from "express";
-import jws from 'jws';
 
-const UserSchema = new Schema({
+export const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -42,8 +39,8 @@ UserSchema.statics.authenticate = async (username: string, password: string) => 
 
 };
 
-UserSchema.pre("save", function (next) {
-  const userModel = this as IUserDoc
+UserSchema.pre("save", function (this: IUserDoc, next : HookNextFunction) {
+  const userModel = this
   if (!userModel.isModified('password')) {
     next()
     return
@@ -55,40 +52,3 @@ UserSchema.pre("save", function (next) {
 });
 
 export const User = model<IUserDoc, Model<IUserDoc>>("User", UserSchema);
-const router = Router();
-
-const createToken = async (password: string) => {
-  return jws.sign({
-    header: { alg: 'HS256' },
-    payload: password,
-    secret: 'has a van',
-  });
-}
-
-const userLogin = async (req: Request, res: Response, next: NextFunction) => {
-  const {username, password} = req.body
-  try {
-    await UserSchema.statics.authenticate(username, password)
-    const token = await createToken(password)
-    res.send({token})
-  } catch (error) {
-    next(error)
-  }
-}
-
-router.post('/api/user/login', userLogin)
-
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
-  const {username, password} = req.body
-  try {
-    const builtUser = await User.create({username, password})
-    const token = await createToken(builtUser.password)
-    res.send({token})
-  } catch (error) {
-    next(error)
-  }
-}
-
-router.post('/api/user/create', createUser)
-
-export const UserRouter = router

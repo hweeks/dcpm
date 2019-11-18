@@ -21,7 +21,7 @@ For local dev we'd recommend:
   * chrome debug tools
   * docker and docker-compose
 
-Run: `yarn dev:up` to get a locally running stack on `localhost:3000`
+Run: `yarn dev` to get a locally running stack on `localhost:3000`
 
 Hit the endpoint with your REST client and attach chrome's debugger tools from `chrome://inspect` or your ide if you prefer.
 
@@ -41,7 +41,7 @@ TYPE: post
 
 PAYLOAD: {
   username: string,
-  passowrd: string,
+  password: string,
 }
 
 RETURN: {
@@ -54,15 +54,13 @@ TYPE: post
 
 PAYLOAD: {
   username: string,
-  passowrd: string,
+  password: string,
 }
 
 RETURN: {
   token: string,
 }
 
-## graphql
+### /api/blob/add
 
-### /api/graphql
-
-It's that graphQL web interface on get, ql on post.
+TYPE: post
