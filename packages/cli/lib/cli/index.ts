@@ -5,7 +5,7 @@ import yargs from "yargs";
 yargs
   .command(
     'get [package]',
-    'fetch a verion of a compose file',
+    'fetch a version of a compose file',
     {},
     function (argv) {
       debugger
@@ -13,7 +13,7 @@ yargs
   )
   .command(
     'publish [package]',
-    'publish a verion of a compose file',
+    'publish a version of a compose file',
     {},
     function (argv) {
       debugger

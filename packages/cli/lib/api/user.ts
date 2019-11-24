@@ -1,0 +1,38 @@
+import fetch from 'node-fetch'
+
+export const login = async (username: string, password: string) : Promise<string|undefined> => {
+  const request = await fetch('http://localhost:3000/api/user/login', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({username, password})
+  })
+  const response = await request.json()
+  return response && response.token
+}
+
+export const create = async (username: string, password: string) : Promise<string|undefined> => {
+  const request = await fetch('http://localhost:3000/api/user/create', {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({username, password})
+  })
+  const response = await request.json()
+  return response && response.token
+}
+
+
+export interface UserApiInterface {
+  'login': typeof login,
+  'create': typeof create
+}
+
+export interface UserApiPayload {
+  username: string,
+  password: string
+}
+
+export type TUserApiChoices = 'login' | 'create'
