@@ -20,8 +20,8 @@ yargs
     }
   )
   .command(
-    'auth <token>',
-    'authenticate yourself to enable publishing, override token path if passed in',
+    'auth',
+    'authenticate yourself to enable publishing',
     {},
     function (argv) {
       debugger
