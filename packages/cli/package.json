@@ -21,7 +21,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "tsc",
     "watch": "tsc -w",
-    "watch:brk": "TS_NODE_FILES=true node --inspect-brk=0.0.0.0 -r ts-node/register",
+    "watch:brk": "TS_NODE_FILES=true node --inspect-brk -r ts-node/register ./lib/cli/actions.ts",
     "dev:start": "nodemon",
     "lint": "eslint lib/**/*.ts"
   },

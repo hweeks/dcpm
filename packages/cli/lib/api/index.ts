@@ -3,8 +3,8 @@ import * as BlobApi from './blob'
 
 export class BaseApi {
   token: string
-  constructor(token: string) {
-    this.token = token;
+  constructor(token?: string) {
+    this.token = token || '';
   }
   async user (type: UserApi.TUserApiChoices, {username, password}: UserApi.UserApiPayload) {
     const methodToCall = (UserApi as UserApi.UserApiInterface)[type]

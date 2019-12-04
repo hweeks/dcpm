@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
+import {getCommand} from './actions'
 
 yargs
   .command(
-    'get [package]',
+    'get [package] <version>',
     'fetch a version of a compose file',
     {},
-    function (argv) {
-      debugger
+    function (args) {
+      getCommand(args.package as string, args.version as string)
     }
   )
   .command(

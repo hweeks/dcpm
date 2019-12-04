@@ -9,11 +9,12 @@ const pipeline = promisify(stream.pipeline)
 export interface BlobGetArgs {
   name: string
   version: string
-  location: string
+  location: string,
+  urlBase: string
 }
 
-export const get = async ({name, version, location}: BlobGetArgs) => {
-  const request = await fetch(`http://localhost:3000/api/blob/get/${name}/${version}.zip`)
+export const get = async ({name, version, location, urlBase}: BlobGetArgs) => {
+  const request = await fetch(`${urlBase}/api/blob/get/${name}/${version}.zip`)
   await pipeline(request.body, fs.createWriteStream(location))
 }
 
@@ -24,9 +25,10 @@ export interface BlobAddArgs {
   version: string
   scm: string
   blob: ReadableStream
+  location: string
 }
 
-export const add = async ({name, author, about, version, scm, blob} : BlobAddArgs, token : string) => {
+export const add = async ({name, author, about, version, scm, blob, location} : BlobAddArgs, token : string) => {
   const formData : FormData = new FormData()
   const formParts :[string | ReadableStream, string][] = [
     [name, 'name'],
@@ -39,7 +41,7 @@ export const add = async ({name, author, about, version, scm, blob} : BlobAddArg
   formParts.forEach(([data, dataName]) => {
     formData.append(dataName, data)
   });
-  const request = await fetch('http://localhost:3000/api/blob/add', {
+  const request = await fetch(`${location}/api/blob/add`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -53,11 +55,12 @@ export const add = async ({name, author, about, version, scm, blob} : BlobAddArg
 export interface AddUserArgs {
   username: string
   action: 'add' | 'remove'
-  name: string
+  name: string,
+  location: string
 }
 
-export const manageUser = async ({username, action, name} : AddUserArgs, token: string) => {
-  const request = await fetch('http://localhost:3000/api/blob/user', {
+export const manageUser = async ({username, action, name, location} : AddUserArgs, token: string) => {
+  const request = await fetch(`${location}/api/blob/user`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',

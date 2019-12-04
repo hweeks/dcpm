@@ -7,7 +7,7 @@ import yaml from 'js-yaml'
 import archiver from 'archiver'
 
 const asyncRead = promisify(fs.readFile)
-const tmpDir = os.tmpdir()
+export const tmpDir = os.tmpdir()
 
 export interface BlobManifest {
   about: {
@@ -76,13 +76,12 @@ const unarchiveSync = (pathIn: string, destination: string) => {
     zipFile.pipe(unzipper.Extract({ path: destination })).on('finish', () => {
       resolve()
     }).on('error', (err) => {
-      debugger
       reject(err)
     })
   })
 }
 
-export const decompressFolder = async (pathIn: string, destination: string) => {
+export const decompressToFolder = async (pathIn: string, destination: string) => {
   const checkForDirectory = await statSync(pathIn)
   if (!checkForDirectory.isFile()) {
     throw new Error('We are decompressing files here, not directories or nothing. Tough luck kiddo.')
