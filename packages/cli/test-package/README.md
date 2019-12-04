@@ -1,5 +1,0 @@
-# test-package
-
-## what
-
-thing.
