@@ -25,10 +25,10 @@ export interface BlobAddArgs {
   version: string
   scm: string
   blob: ReadableStream
-  location: string
+  baseUrl: string
 }
 
-export const add = async ({name, author, about, version, scm, blob, location} : BlobAddArgs, token : string) => {
+export const add = async ({name, author, about, version, scm, blob, baseUrl} : BlobAddArgs, token : string) => {
   const formData : FormData = new FormData()
   const formParts :[string | ReadableStream, string][] = [
     [name, 'name'],
@@ -41,7 +41,7 @@ export const add = async ({name, author, about, version, scm, blob, location} : 
   formParts.forEach(([data, dataName]) => {
     formData.append(dataName, data)
   });
-  const request = await fetch(`${location}/api/blob/add`, {
+  const request = await fetch(`${baseUrl}/api/blob/add`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const add = async ({name, author, about, version, scm, blob, location} : 
     },
     body: formData
   })
-  return request.json()
+  return request.ok
 }
 
 export interface AddUserArgs {

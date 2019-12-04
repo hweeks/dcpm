@@ -30,9 +30,15 @@ export interface BlobManifest {
   }
 }
 
-const archiveSync = (pathIn: string) => {
+export interface ZipResolve {
+  config: BlobManifest,
+  location: string
+}
+
+const archiveSync = (pathIn: string) : Promise<ZipResolve> => {
   return new Promise((resolve, reject) => {
-    const outputFile = fs.createWriteStream(`${tmpDir}/blob.zip`)
+    const zipLocation = `${tmpDir}/blob-${Date.now()}.zip`
+    const outputFile = fs.createWriteStream(zipLocation)
     const zipFile = archiver('zip', {
       zlib: {level: 9}
     });
@@ -56,7 +62,10 @@ const archiveSync = (pathIn: string) => {
         reject(err)
       })
       outputFile.on('finish', () => {
-        resolve(`${tmpDir}/blob.zip`)
+        resolve({
+          config: dcpmConfig,
+          location: zipLocation
+        })
       })
       zipFile.finalize()
     })

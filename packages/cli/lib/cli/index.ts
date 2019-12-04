@@ -5,11 +5,11 @@ import {getCommand} from './actions'
 
 yargs
   .command(
-    'get [package] <version>',
-    'fetch a version of a compose file',
+    'get [name] [version]',
+    'fetch a version of a dcpm bundle',
     {},
-    function (args) {
-      getCommand(args.package as string, args.version as string)
+    function ({name, version}) {
+      getCommand(name as string, version as string)
     }
   )
   .command(
