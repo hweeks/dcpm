@@ -31,34 +31,35 @@ export interface BlobManifest {
 }
 
 const archiveSync = (pathIn: string) => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const outputFile = fs.createWriteStream(`${tmpDir}/blob.zip`)
     const zipFile = archiver('zip', {
       zlib: {level: 9}
     });
-    const manifestFile = await asyncRead(`${pathIn}/manifest.yml`, {encoding: 'utf8'})
-    const dcpmConfig : BlobManifest = yaml.safeLoad(manifestFile)
-    const filesToCompress : string[]= [
-      './manifest.yml',
-      dcpmConfig.about.about as string,
-      dcpmConfig.config,
-      ...Object.entries(dcpmConfig.overrides).map(([_, value]) => value as string)
-    ]
-    filesToCompress.forEach((pathToFile) => {
-      const composedPath = path.resolve(pathIn, pathToFile)
-      const fileToZip = fs.createReadStream(composedPath)
-      zipFile.append(fileToZip, {
-        name: pathToFile.replace('./', '')
+    asyncRead(`${pathIn}/manifest.yml`, {encoding: 'utf8'}).then((manifestFile) => {
+      const dcpmConfig : BlobManifest = yaml.safeLoad(manifestFile)
+      const filesToCompress : string[]= [
+        './manifest.yml',
+        dcpmConfig.about.about as string,
+        dcpmConfig.config,
+        ...Object.entries(dcpmConfig.overrides).map(([_, value]) => value as string)
+      ]
+      filesToCompress.forEach((pathToFile) => {
+        const composedPath = path.resolve(pathIn, pathToFile)
+        const fileToZip = fs.createReadStream(composedPath)
+        zipFile.append(fileToZip, {
+          name: pathToFile.replace('./', '')
+        })
       })
+      zipFile.pipe(outputFile)
+      zipFile.on('error', (err) => {
+        reject(err)
+      })
+      outputFile.on('finish', () => {
+        resolve(`${tmpDir}/blob.zip`)
+      })
+      zipFile.finalize()
     })
-    zipFile.pipe(outputFile)
-    zipFile.on('error', (err) => {
-      reject(err)
-    })
-    outputFile.on('finish', () => {
-      resolve(`${tmpDir}/blob.zip`)
-    })
-    zipFile.finalize()
   })
 }
 
