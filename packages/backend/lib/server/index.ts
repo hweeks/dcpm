@@ -14,7 +14,7 @@ const buildAndReturnApp = async (app : Application) => {
   app.use('/', BlobRouter)
   app.use('*', (error: Error, req: Request, res: Response, next: NextFunction) => {
     const {message} = error
-    res.status(500).send(message)
+    res.status(500).send({message})
     next()
   })
   app.listen(3000)
