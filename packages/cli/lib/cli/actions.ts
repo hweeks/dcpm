@@ -15,13 +15,13 @@ export const getCommand = async (packageName: string, packageVersion: string) =>
     urlBase: blobUrl,
     location: writeLocation
   })
-  await decompressToFolder(writeLocation, cwd)
+  await decompressToFolder(writeLocation, `${cwd}/${packageName}`)
 }
 
 export const publishCommand = async () => {
   const currentConfig = await BuiltConfig.getConfig()
   const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
-  const zipInfo = await compressFolder('/Users/hamsolo/Projects/test-package')
+  const zipInfo = await compressFolder(cwd)
   const manifestInfo = zipInfo.config
   const zipLocation = zipInfo.location
   await blobReqs.add({
@@ -34,10 +34,3 @@ export const publishCommand = async () => {
     blob: createReadStream(zipLocation) as unknown as ReadableStream
   }, currentConfig.token || '')
 }
-
-const testConcept = async () => {
-  await publishCommand()
-  await getCommand('test-package-2', '1.0.12')
-}
-
-testConcept()

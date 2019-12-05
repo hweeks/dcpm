@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
-import {getCommand} from './actions'
+import {getCommand, publishCommand} from './actions'
 
 yargs
   .command(
@@ -13,11 +13,11 @@ yargs
     }
   )
   .command(
-    'publish [package]',
+    'publish',
     'publish a version of a compose file',
     {},
-    function (argv) {
-      debugger
+    function () {
+      publishCommand()
     }
   )
   .command(

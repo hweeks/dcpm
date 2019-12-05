@@ -1,11 +1,5 @@
 # `@dcpm/cli`
 
-> TODO: description
+## overview
 
-## Usage
-
-```
-const cli = require('@dcpm/cli');
-
-// TODO: DEMONSTRATE API
-```
+We export both an API and a CLI from this package.

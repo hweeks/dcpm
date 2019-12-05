@@ -44,11 +44,15 @@ export const add = async ({name, author, about, version, scm, blob, baseUrl} : B
   const request = await fetch(`${baseUrl}/api/blob/add`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      token
+      token,
+      ...formData.getHeaders()
     },
     body: formData
   })
+  if (!request.ok) {
+    const body = await request.json()
+    throw new Error(body.message || request.statusText)
+  }
   return request.ok
 }
 
