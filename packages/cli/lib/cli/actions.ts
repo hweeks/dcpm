@@ -1,5 +1,6 @@
 import { createReadStream } from "fs";
 import * as blobReqs from "../api/blob";
+import * as userReqs from "../api/user";
 import { DcpmConfig, cwd } from "./config";
 import { tmpDir, decompressToFolder, compressFolder } from "./archive";
 
@@ -32,5 +33,23 @@ export const publishCommand = async () => {
     scm: manifestInfo.remotes.scm,
     baseUrl: blobUrl,
     blob: createReadStream(zipLocation) as unknown as ReadableStream
+  }, currentConfig.token || '')
+}
+
+export const loginOrCreateCommand = async (username: string, password: string) => {
+  const currentConfig = await BuiltConfig.getConfig()
+  const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
+  const token = await userReqs.login(username, password, blobUrl)
+  await BuiltConfig.setConfig({token})
+}
+
+export const modifyPermsCommand = async (user: string, action: 'add' | 'remove', packageName: string) => {
+  const currentConfig = await BuiltConfig.getConfig()
+  const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
+  await blobReqs.manageUser({
+    username: user,
+    action,
+    name: packageName,
+    baseUrl: blobUrl
   }, currentConfig.token || '')
 }

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
-export const login = async (username: string, password: string) : Promise<string|undefined> => {
-  const request = await fetch('http://localhost:3000/api/user/login', {
+export const login = async (username: string, password: string, baseUrl: string) : Promise<string|undefined> => {
+  const request = await fetch(`${baseUrl}/api/user/login`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -12,8 +12,8 @@ export const login = async (username: string, password: string) : Promise<string
   return response && response.token
 }
 
-export const create = async (username: string, password: string) : Promise<string|undefined> => {
-  const request = await fetch('http://localhost:3000/api/user/create', {
+export const create = async (username: string, password: string, baseUrl: string) : Promise<string|undefined> => {
+  const request = await fetch(`${baseUrl}/api/user/create`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'

@@ -60,11 +60,11 @@ export interface AddUserArgs {
   username: string
   action: 'add' | 'remove'
   name: string,
-  location: string
+  baseUrl: string
 }
 
-export const manageUser = async ({username, action, name, location} : AddUserArgs, token: string) => {
-  const request = await fetch(`${location}/api/blob/user`, {
+export const manageUser = async ({username, action, name, baseUrl} : AddUserArgs, token: string) => {
+  const request = await fetch(`${baseUrl}/api/blob/user`, {
     method: "POST",
     headers: {
       'Content-Type': 'application/json',

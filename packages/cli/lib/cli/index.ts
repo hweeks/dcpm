@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
-import {getCommand, publishCommand} from './actions'
+import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand} from './actions'
 
 yargs
   .command(
@@ -21,27 +21,27 @@ yargs
     }
   )
   .command(
-    'auth',
-    'authenticate yourself to enable publishing',
+    'auth [user] [password]',
+    'authenticate yourself to enable publishing, will also create an account if a new username',
     {},
-    function (argv) {
-      debugger
+    function ({user, password}) {
+      loginOrCreateCommand(user as string, password as string)
     }
   )
   .command(
-    'add-user [username]',
+    'add-user [user] [name]',
     'allow another user to publish your package',
     {},
-    function (argv) {
-      debugger
+    function ({user, name}) {
+      modifyPermsCommand(user as string, 'add', name as string)
     }
   )
   .command(
-    'remove-user [username]',
+    'remove-user [user] [name]',
     'revoke user publish permission',
     {},
-    function (argv) {
-      debugger
+    function ({user, name}) {
+      modifyPermsCommand(user as string, 'remove', name as string)
     }
   )
   .help()
