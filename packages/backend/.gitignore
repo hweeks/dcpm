@@ -3,3 +3,4 @@ packages/docs/site
 dist
 *.DS_Store
 *.log
+.env

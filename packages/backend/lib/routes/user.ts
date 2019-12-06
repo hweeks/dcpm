@@ -8,7 +8,7 @@ const createToken = async (password: string) => {
   return jws.sign({
     header: { alg: 'HS256' },
     payload: password,
-    secret: 'has a van',
+    secret: process.env.JWT_SECRET || 'has a van',
   });
 }
 

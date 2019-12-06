@@ -7,6 +7,9 @@
   "devDependencies": {
     "lerna": "^3.18.4"
   },
+  "scripts": {
+    "lint": "lerna run lint --parallel"
+  },
   "private": true,
   "workspaces": [
     "packages/*"

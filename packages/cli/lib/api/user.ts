@@ -32,7 +32,8 @@ export interface UserApiInterface {
 
 export interface UserApiPayload {
   username: string,
-  password: string
+  password: string,
+  baseUrl: string,
 }
 
 export type TUserApiChoices = 'login' | 'create'

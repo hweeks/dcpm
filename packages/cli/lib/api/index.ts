@@ -6,9 +6,9 @@ export class BaseApi {
   constructor(token?: string) {
     this.token = token || '';
   }
-  async user (type: UserApi.TUserApiChoices, {username, password}: UserApi.UserApiPayload) {
+  async user (type: UserApi.TUserApiChoices, {username, password, baseUrl}: UserApi.UserApiPayload) {
     const methodToCall = (UserApi as UserApi.UserApiInterface)[type]
-    const builtResponse = await methodToCall(username, password)
+    const builtResponse = await methodToCall(username, password, baseUrl)
     if (builtResponse) {
       this.token = builtResponse
     }
