@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label: 'dcpm'
+    label 'dcpm'
   }
   stages {
     stage('install') {
