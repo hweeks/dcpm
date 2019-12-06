@@ -17,6 +17,14 @@ pipeline {
         """
       }
     }
+    stage('docs') {
+      steps {
+        sh """
+          cd packages/docs
+          ./qd.sh
+        """
+      }
+    }
   }
   post {
     success {
