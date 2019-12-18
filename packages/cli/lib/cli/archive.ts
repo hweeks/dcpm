@@ -48,8 +48,8 @@ const archiveSync = (pathIn: string) : Promise<ZipResolve> => {
         './manifest.yml',
         dcpmConfig.about.about as string,
         dcpmConfig.config,
-        ...Object.entries(dcpmConfig.overrides).map(([_, value]) => value as string)
-      ]
+        ...Object.entries(dcpmConfig.overrides || {}).map(([_, value]) => value as string)
+      ].filter(Boolean)
       filesToCompress.forEach((pathToFile) => {
         const composedPath = path.resolve(pathIn, pathToFile)
         const fileToZip = fs.createReadStream(composedPath)

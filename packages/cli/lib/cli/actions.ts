@@ -17,6 +17,7 @@ export const getCommand = async (packageName: string, packageVersion: string) =>
     location: writeLocation
   })
   await decompressToFolder(writeLocation, `${cwd}/${packageName}`)
+  console.log(`Managed to grab ${packageName} at version ${packageVersion}, just barely.`)
 }
 
 export const publishCommand = async () => {
@@ -34,6 +35,7 @@ export const publishCommand = async () => {
     baseUrl: blobUrl,
     blob: createReadStream(zipLocation) as unknown as ReadStream
   }, currentConfig.token || '')
+  console.log(`Published ${manifestInfo.about.name} to ${blobUrl}, nice.`)
 }
 
 export const loginOrCreateCommand = async (username: string, password: string) => {
@@ -41,6 +43,7 @@ export const loginOrCreateCommand = async (username: string, password: string) =
   const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
   const token = await userReqs.login(username, password, blobUrl)
   await BuiltConfig.setConfig({token})
+  console.log(`Looks like we just managed to get ${username} all logged in.`)
 }
 
 export const modifyPermsCommand = async (user: string, action: 'add' | 'remove', packageName: string) => {
@@ -52,4 +55,5 @@ export const modifyPermsCommand = async (user: string, action: 'add' | 'remove',
     name: packageName,
     baseUrl: blobUrl
   }, currentConfig.token || '')
+  console.log(`We've ${action}ed ${user} ${action === 'add' ? 'to' : 'from'} ${packageName}`)
 }
