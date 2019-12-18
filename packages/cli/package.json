@@ -7,21 +7,23 @@
   "license": "ISC",
   "bin": "dist/cli/index.js",
   "main": "dist/api/index.js",
+  "types": "dist/api/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepublishOnly": "yarn build",
     "build": "tsc",
     "watch": "tsc -w",
-    "watch:brk": "TS_NODE_FILES=true node --inspect-brk -r ts-node/register ./lib/cli/actions.ts",
+    "watch:brk": "TS_NODE_FILES=true node --inspect-brk -r ts-node/register",
     "dev:start": "nodemon",
     "lint": "eslint lib/**/*.ts"
   },
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@types/archiver": "^3.0.0",
     "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.12.14",
     "@types/node-fetch": "^2.5.3",
     "@types/unzipper": "^0.10.1",
     "@types/yargs": "^13.0.3",

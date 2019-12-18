@@ -1,5 +1,5 @@
 import {promisify} from 'util'
-import fs from 'fs'
+import fs, { ReadStream } from 'fs'
 import stream from 'stream'
 import fetch from 'node-fetch'
 import FormData from 'form-data'
@@ -24,13 +24,13 @@ export interface BlobAddArgs {
   about: string
   version: string
   scm: string
-  blob: ReadableStream
+  blob: ReadStream
   baseUrl: string
 }
 
 export const add = async ({name, author, about, version, scm, blob, baseUrl} : BlobAddArgs, token : string) => {
   const formData : FormData = new FormData()
-  const formParts :[string | ReadableStream, string][] = [
+  const formParts :[string | ReadStream, string][] = [
     [name, 'name'],
     [author, 'author'],
     [about, 'about'],

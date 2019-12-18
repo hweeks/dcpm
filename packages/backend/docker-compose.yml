@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
     ports:
       - "3000:3000"
     links:

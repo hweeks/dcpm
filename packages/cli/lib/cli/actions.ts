@@ -1,4 +1,4 @@
-import { createReadStream } from "fs";
+import { createReadStream, ReadStream} from "fs";
 import * as blobReqs from "../api/blob";
 import * as userReqs from "../api/user";
 import { DcpmConfig, cwd } from "./config";
@@ -32,7 +32,7 @@ export const publishCommand = async () => {
     version: manifestInfo.about.version,
     scm: manifestInfo.remotes.scm,
     baseUrl: blobUrl,
-    blob: createReadStream(zipLocation) as unknown as ReadableStream
+    blob: createReadStream(zipLocation) as unknown as ReadStream
   }, currentConfig.token || '')
 }
 

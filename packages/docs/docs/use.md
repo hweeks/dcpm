@@ -4,31 +4,31 @@ The main tool `dcpm` has a few things it can do.
 
 ## get
 
-Use: `dcpm get [package]`
+Use: `dcpm get [package] [version]`
 
-This will fetch whatever config you want. Versions can be appended to the end of the package you'd like. When fetched a `dcpm-lock.yml` will be written to the same directory you fetch from.
+This will fetch whatever config you want. As of now, a version is needed.
 
 ## publish
 
-Use: `dcpm publish [version]`
+Use: `dcpm publish`
 
 This will push a new version of your package to [dcpm blobs](https://blobs.dcpm.dev).
 
 ## auth
 
-Use: `dcpm auth`
+Use: `dcpm auth [user] [password]`
 
-This will prompt you to create a user. Once logged in only that users token can publish a package. Token will be written to `~/.dcpmrc`.
+This will either log you in or create a user. Token will be written to `~/.dcpm`.
 
 ## add-user
 
-Use: `dcpm add-user [username]`
+Use: `dcpm add-user [user] [name]`
 
-This will allow you to add another user to publish your package. This must be run from the root of the project you are modifying.
+This will allow you to add another user to publish your package.
 
 ## remove-user
 
-Use: `dcpm remove-user [username]`
+Use: `dcpm remove-user [user] [name]`
 
-This will allow you to remove a user from the currently authorized ones. This must be run from the root of the project you are modifying.
+This will allow you to remove a user from the currently authorized ones.
 

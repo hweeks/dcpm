@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     command: yarn dev:start
+    environment:
+      JWT_SECRET: 'has a van'
     ports:
       - "3000:3000"
       - "9229:9229"
