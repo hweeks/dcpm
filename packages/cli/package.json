@@ -1,11 +1,13 @@
 {
   "name": "@dcpm/cli",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "The cli for dcpm",
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
   "license": "ISC",
-  "bin": "dist/cli/index.js",
+  "bin": {
+    "dcpm": "dist/cli/index.js"
+  },
   "main": "dist/api/index.js",
   "types": "dist/api/index.d.ts",
   "directories": {
