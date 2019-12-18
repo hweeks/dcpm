@@ -5,11 +5,11 @@ import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand} fr
 
 yargs
   .command(
-    'get [name] [version]',
+    'get <name> [ver]',
     'fetch a version of a dcpm bundle',
     {},
-    function ({name, version}) {
-      getCommand(name as string, version as string)
+    function ({name, ver}) {
+      getCommand(name as string, ver as string)
     }
   )
   .command(
@@ -21,7 +21,7 @@ yargs
     }
   )
   .command(
-    'auth [user] [password]',
+    'auth <user> [password]',
     'authenticate yourself to enable publishing, will also create an account if a new username',
     {},
     function ({user, password}) {
@@ -29,7 +29,7 @@ yargs
     }
   )
   .command(
-    'add-user [user] [name]',
+    'add-user <user> [name]',
     'allow another user to publish your package',
     {},
     function ({user, name}) {
@@ -37,7 +37,7 @@ yargs
     }
   )
   .command(
-    'remove-user [user] [name]',
+    'remove-user <user> [name]',
     'revoke user publish permission',
     {},
     function ({user, name}) {

@@ -10,7 +10,7 @@ A manifest for a deployed package looks like this:
 about:
   name: 'My fancy config'
   author: 'hweeks <root@hweeks.com>'
-  readme: './README.md'
+  about: './README.md'
   version: '1.0.0'
 remotes:
   scm: 'https://github.com/me/my-fancy-config'
@@ -38,6 +38,10 @@ The maintainer of your config.
 #### version
 
 A semver compliant version of your package.
+
+#### about
+
+This is the markdown flavored info about your package. At some point there will be a front end to view availabl packages.
 
 ### remotes
 
