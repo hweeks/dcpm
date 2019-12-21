@@ -32,7 +32,6 @@ pipeline {
     stage('release') {
       steps {
         sh """
-          printenv
           yarn release
         """
       }
