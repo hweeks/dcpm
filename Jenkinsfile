@@ -5,6 +5,7 @@ pipeline {
   environment {
     NPM_TOKEN = credentials('npm-token')
     GH_TOKEN = credentials('github-token')
+    GH_URL = 'https://github.com'
   }
   stages {
     stage('install') {
