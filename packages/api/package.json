@@ -37,7 +37,7 @@
     "@types/node-fetch": "^2.5.3",
     "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.1",
-    "semantic-release": "^15.4.0",
+    "semantic-release": "15.13.31",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }
