@@ -1,5 +1,4 @@
 node_modules
-packages/docs/site
 dist
 *.DS_Store
 *.log

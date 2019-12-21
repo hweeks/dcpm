@@ -1,6 +1,5 @@
 import { createReadStream, ReadStream} from "fs";
-import * as blobReqs from "../api/blob";
-import * as userReqs from "../api/user";
+import {Blob, User} from "@dcpm/api";
 import { DcpmConfig, cwd } from "./config";
 import { tmpDir, decompressToFolder, compressFolder } from "./archive";
 
@@ -10,7 +9,7 @@ export const getCommand = async (packageName: string, packageVersion: string) =>
   const currentConfig = await BuiltConfig.getConfig()
   const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
   const writeLocation = `${tmpDir}/blob-${packageName}-${packageVersion}.zip`
-  await blobReqs.get({
+  await Blob.get({
     name: packageName,
     version: packageVersion,
     urlBase: blobUrl,
@@ -26,7 +25,7 @@ export const publishCommand = async () => {
   const zipInfo = await compressFolder(cwd)
   const manifestInfo = zipInfo.config
   const zipLocation = zipInfo.location
-  await blobReqs.add({
+  await Blob.add({
     name: manifestInfo.about.name,
     author: manifestInfo.about.author,
     about: manifestInfo.about.about,
@@ -41,7 +40,7 @@ export const publishCommand = async () => {
 export const loginOrCreateCommand = async (username: string, password: string) => {
   const currentConfig = await BuiltConfig.getConfig()
   const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
-  const token = await userReqs.login(username, password, blobUrl)
+  const token = await User.login(username, password, blobUrl)
   await BuiltConfig.setConfig({token})
   console.log(`Looks like we just managed to get ${username} all logged in.`)
 }
@@ -49,7 +48,7 @@ export const loginOrCreateCommand = async (username: string, password: string) =
 export const modifyPermsCommand = async (user: string, action: 'add' | 'remove', packageName: string) => {
   const currentConfig = await BuiltConfig.getConfig()
   const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
-  await blobReqs.manageUser({
+  await Blob.manageUser({
     username: user,
     action,
     name: packageName,

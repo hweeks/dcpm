@@ -1,15 +1,12 @@
 {
-  "name": "@dcpm/cli",
-  "version": "1.1.0",
-  "description": "The cli for dcpm",
+  "name": "@dcpm/api",
+  "version": "1.0.1",
+  "description": "The api for dcpm",
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
   "license": "ISC",
-  "bin": {
-    "dcpm": "dist/cli/index.js"
-  },
-  "main": "dist/api/index.js",
-  "types": "dist/api/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -31,19 +28,10 @@
     "lint": "eslint lib/**/*.ts"
   },
   "dependencies": {
-    "@dcpm/api": "1.0.1",
-    "archiver": "^3.1.1",
-    "form-data": "^3.0.0",
-    "js-yaml": "^3.13.1",
-    "unzipper": "^0.10.5",
-    "yargs": "^14.2.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/archiver": "^3.0.0",
-    "@types/js-yaml": "^3.12.1",
-    "@types/node": "^12.12.14",
-    "@types/unzipper": "^0.10.1",
-    "@types/yargs": "^13.0.3",
+    "@types/node-fetch": "^2.5.3",
     "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.1",
     "semantic-release": "^15.4.0",

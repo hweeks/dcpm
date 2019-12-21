@@ -19,3 +19,6 @@ export class BaseApi {
     return await methodToCall(inputArgs as any, this.token)
   }
 }
+
+export const User = UserApi
+export const Blob = BlobApi

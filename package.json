@@ -8,7 +8,8 @@
     "lerna": "^3.18.4"
   },
   "scripts": {
-    "lint": "lerna run lint --parallel"
+    "lint": "lerna run lint --parallel",
+    "release": "lerna run semantic-release --concurrency 1"
   },
   "private": true,
   "workspaces": [
@@ -18,6 +19,7 @@
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
     "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.17.0",
     "typescript": "^3.7.2"
   }
 }
