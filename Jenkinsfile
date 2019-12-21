@@ -5,6 +5,8 @@ pipeline {
   environment {
     NPM_TOKEN = credentials('npm-token')
     GH_TOKEN = credentials('github-token')
+    DOCKER_USER = 'hams'
+    DOCKER_PASS = credentials('docker-pass')
   }
   stages {
     stage('skip ci') {
@@ -43,6 +45,14 @@ pipeline {
       steps {
         sh """
           yarn release
+        """
+      }
+    }
+    stage('docker') {
+      steps {
+        sh """
+          ./packages/backend/docker-build-n-tag.sh
+          docker system prune -a -f --volumes
         """
       }
     }
