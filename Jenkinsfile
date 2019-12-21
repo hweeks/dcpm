@@ -2,6 +2,10 @@ pipeline {
   agent {
     label 'dcpm'
   }
+  environment {
+    NPM_TOKEN = credentials('npm-token')
+    GH_TOKEN = credentials('github-token')
+  }
   stages {
     stage('install') {
       steps {
@@ -22,6 +26,13 @@ pipeline {
         sh """
           cd packages/docs
           ./qd.sh
+        """
+      }
+    }
+    stage('release') {
+      steps {
+        sh """
+          yarn release
         """
       }
     }

@@ -24,6 +24,7 @@
     "watch": "tsc -w",
     "watch:brk": "TS_NODE_FILES=true node --inspect-brk -r ts-node/register",
     "dev:start": "nodemon",
+    "semantic-release": "semantic-release -e hweeks-semantic-release-monorepo",
     "lint": "eslint lib/**/*.ts"
   },
   "dependencies": {
@@ -31,7 +32,9 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.3",
+    "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.1",
+    "semantic-release": "^15.4.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }
