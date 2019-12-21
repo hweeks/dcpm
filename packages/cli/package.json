@@ -6,10 +6,10 @@
   "homepage": "",
   "license": "ISC",
   "bin": {
-    "dcpm": "dist/cli/index.js"
+    "dcpm": "dist/index.js"
   },
-  "main": "dist/api/index.js",
-  "types": "dist/api/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
