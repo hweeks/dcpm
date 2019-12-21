@@ -15,6 +15,7 @@ pipeline {
             error 'Aborting because commit message contains [skip ci]'
           }
         }
+      }
     }
     stage('install') {
       steps {
