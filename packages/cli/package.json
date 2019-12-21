@@ -39,6 +39,8 @@
     "yargs": "^14.2.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "^7.0.18",
+    "@semantic-release/npm": "^5.3.4",
     "@types/archiver": "^3.0.0",
     "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.12.14",
