@@ -49,6 +49,7 @@ pipeline {
       }
     }
     stage('docker') {
+      when { branch 'master' }
       steps {
         sh """
           cd packages/backend
