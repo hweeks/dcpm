@@ -17,7 +17,7 @@
   "files": [
     "dist"
   ],
-  "repository": "git@github.com:hweeks/dcpm.git",
+  "repository": "https://github.com/hweeks/dcpm.git",
   "publishConfig": {
     "access": "public"
   },

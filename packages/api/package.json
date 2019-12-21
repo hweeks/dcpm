@@ -17,7 +17,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": "git@github.com:hweeks/dcpm.git",
+  "repository": "https://github.com/hweeks/dcpm.git",
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "prepublishOnly": "yarn build",
