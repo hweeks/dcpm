@@ -51,7 +51,8 @@ pipeline {
     stage('docker') {
       steps {
         sh """
-          ./packages/backend/docker-build-n-tag.sh
+          cd packages/backend
+          ./docker-build-n-tag.sh
           docker system prune -a -f --volumes
         """
       }
