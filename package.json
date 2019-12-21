@@ -9,6 +9,7 @@
   },
   "scripts": {
     "lint": "lerna run lint --parallel",
+    "test": "lerna run test --parallel",
     "release": "lerna run semantic-release --concurrency 1"
   },
   "private": true,

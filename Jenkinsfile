@@ -33,6 +33,13 @@ pipeline {
         """
       }
     }
+    stage('test') {
+      steps {
+        sh """
+          yarn test
+        """
+      }
+    }
     stage('docs') {
       steps {
         sh """
