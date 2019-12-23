@@ -10,6 +10,7 @@
     "access": "private"
   },
   "scripts": {
-    "dev": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material"
+    "dev": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material",
+    "build": "docker run --rm -it -v ${PWD}:/docs squidfunk/mkdocs-material build && ./qd.sh"
   }
 }

@@ -45,7 +45,7 @@ pipeline {
       steps {
         sh """
           cd packages/docs
-          ./qd.sh
+          yarn build
         """
       }
     }
