@@ -66,5 +66,8 @@
   "exclude": [
     "setup",
     "__tests__"
+  ],
+  "include": [
+    "libs/"
   ]
 }

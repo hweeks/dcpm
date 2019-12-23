@@ -22,6 +22,7 @@ pipeline {
     stage('install') {
       steps {
         sh """
+          source ~/.bashrc
           yarn
         """
       }
