@@ -22,7 +22,7 @@ pipeline {
     stage('install') {
       steps {
         sh """
-          ./.bashrc
+          sh ~/.bashrc
           yarn
         """
       }
