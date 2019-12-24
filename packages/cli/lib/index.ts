@@ -1,15 +1,22 @@
 #!/usr/bin/env node
 
 import yargs from "yargs";
+import semver from "semver"
 import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand} from './actions'
 
 yargs
   .command(
-    'get <name> [ver]',
+    'get <name>',
     'fetch a version of a dcpm bundle',
     {},
-    function ({name, ver}) {
-      getCommand(name as string, ver as string)
+    function ({name}) {
+      let pkgName = name as string
+      const ver = pkgName.split('@').pop()
+      const verCheck = semver.valid(ver) ? ver : 'latest'
+      if (verCheck !== 'latest') {
+        pkgName = pkgName.replace(`@${ver}`, '')
+      }
+      getCommand(pkgName, verCheck as string)
     }
   )
   .command(
