@@ -42,6 +42,7 @@ pipeline {
       }
     }
     stage('docs') {
+      when { branch 'master' }
       steps {
         sh """
           cd packages/docs
@@ -50,6 +51,7 @@ pipeline {
       }
     }
     stage('release') {
+      when { branch 'master' }
       steps {
         sh """
           yarn release
