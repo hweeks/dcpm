@@ -6,6 +6,7 @@ import { fileMiddleware, connection, gfs, } from "../server/db";
 import semver from 'semver'
 import { Types } from "mongoose";
 import { ObjectID } from "bson";
+import { getLatest } from "./search";
 
 const router = Router();
 
@@ -161,7 +162,7 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
     return
   }
   await foundBlob.updateOne(currentBlob)
-  res.send('ok')
+  res.send({message: 'ok'})
   next()
 }
 
@@ -174,9 +175,20 @@ const getBlob = async (req: Request, res: Response, next: NextFunction) => {
     next(new Error(`We can't find a blob named ${blob}. Check the name and try again.`))
   }
   const blobObject = (foundBlob as IBlobDoc).toObject()
-  const foundVersion : VersionConfig = blobObject.versions.find((currentVersion: VersionConfig) => {
-    return version.startsWith(currentVersion.version)
-  })
+  let foundVersion  
+  if (version !== 'latest.zip') {
+    foundVersion = blobObject.versions.find((currentVersion: VersionConfig) => {
+      return version.startsWith(currentVersion.version)
+    })
+  } else if (version === 'latest.zip') {    
+    const flatVersions = Array.isArray(blobObject.versions) && blobObject.versions.map(
+      (singleVersion : VersionConfig) => singleVersion.version
+    )
+    const latestVersion = getLatest(flatVersions)
+    foundVersion = blobObject.versions.find((currentVersion: VersionConfig) => {
+      return currentVersion.version === latestVersion
+    })
+  }
   if (!foundVersion) {
     next(new Error(`We can't find a blob version ${version.replace('.zip', '')}. Check the version and try again.`))
   }
