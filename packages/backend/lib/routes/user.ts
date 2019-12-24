@@ -4,7 +4,7 @@ import { User, UserSchema, IUserDoc } from "../models/user";
 
 const router = Router();
 
-const createToken = async (password: string) => {
+export const createToken = async (password: string) => {
   return jws.sign({
     header: { alg: 'HS256' },
     payload: password,
@@ -12,7 +12,7 @@ const createToken = async (password: string) => {
   });
 }
 
-const userLogin = async (req: Request, res: Response, next: NextFunction) => {
+export const userLogin = async (req: Request, res: Response, next: NextFunction) => {
   const {username, password} = req.body
   try {
     await UserSchema.statics.authenticate(username, password)
@@ -26,7 +26,7 @@ const userLogin = async (req: Request, res: Response, next: NextFunction) => {
 
 router.post('/api/user/login', userLogin)
 
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
+export const createUser = async (req: Request, res: Response, next: NextFunction) => {
   const {username, password} = req.body
   try {
     const builtUser = await User.create({username, password})

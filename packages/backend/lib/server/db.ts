@@ -13,8 +13,8 @@ let fileMiddleware : multer.Instance = multer({storage});
 let bucket : GridFSBucket
 let gfs : Grid.Grid
 
-export const startMongoose = async () => {
-  connection = await mongoose.connect(url, connectOpts);
+export const startMongoose = async (urlOverride?: string) => {
+  connection = await mongoose.connect(urlOverride? urlOverride : url, connectOpts);
   storage = new GridFsStorage({ db: connection });
   fileMiddleware = multer({storage})
   bucket = new GridFSBucket(connection.connection.db, { bucketName: 'blob' });

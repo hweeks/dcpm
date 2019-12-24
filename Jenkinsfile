@@ -22,6 +22,7 @@ pipeline {
     stage('install') {
       steps {
         sh """
+          sh ~/.bashrc
           yarn
         """
       }
@@ -33,15 +34,24 @@ pipeline {
         """
       }
     }
+    stage('test') {
+      steps {
+        sh """
+          yarn test
+        """
+      }
+    }
     stage('docs') {
+      when { branch 'master' }
       steps {
         sh """
           cd packages/docs
-          ./qd.sh
+          yarn build
         """
       }
     }
     stage('release') {
+      when { branch 'master' }
       steps {
         sh """
           yarn release
