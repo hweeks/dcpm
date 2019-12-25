@@ -8,6 +8,10 @@ export const login = async (username: string, password: string, baseUrl: string)
     },
     body: JSON.stringify({username, password})
   })
+  if (!request.ok) {
+    const body = await request.json()
+    throw new Error(body.message || request.statusText)
+  }
   const response = await request.json()
   return response && response.token
 }
@@ -20,6 +24,10 @@ export const create = async (username: string, password: string, baseUrl: string
     },
     body: JSON.stringify({username, password})
   })
+  if (!request.ok) {
+    const body = await request.json()
+    throw new Error(body.message || request.statusText)
+  }
   const response = await request.json()
   return response && response.token
 }

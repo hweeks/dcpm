@@ -3,6 +3,9 @@ FROM node:12
 EXPOSE 3000
 
 ARG NODE_ENV=production
+ARG GIT_COMMIT=unspecified
+
+LABEL git_commit=$GIT_COMMIT
 
 USER root
 
