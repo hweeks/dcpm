@@ -15,7 +15,11 @@ export interface BlobGetArgs {
 
 export const get = async ({name, version, location, urlBase}: BlobGetArgs) => {
   const request = await fetch(`${urlBase}/api/blob/get/${name}/${version}.zip`)
-  await pipeline(request.body, fs.createWriteStream(location))
+  if (!request.ok) {
+    const body = await request.json()
+    throw new Error(body.message || request.statusText)
+  }
+  return pipeline(request.body, fs.createWriteStream(location))
 }
 
 export interface BlobAddArgs {
@@ -53,7 +57,7 @@ export const add = async ({name, author, about, version, scm, blob, baseUrl} : B
     const body = await request.json()
     throw new Error(body.message || request.statusText)
   }
-  return request.ok
+  return request.json()
 }
 
 export interface AddUserArgs {
@@ -72,7 +76,12 @@ export const manageUser = async ({username, action, name, baseUrl} : AddUserArgs
     },
     body: JSON.stringify({username, action, name})
   })
-  return request.json()
+  if (!request.ok) {
+    const body = await request.json()
+    throw new Error(body.message || request.statusText)
+  } else {
+    return request.json()
+  }
 }
 
 export type TBlobApiMethods = 'manageUser' | 'add' | 'get'
