@@ -27,18 +27,20 @@ export interface BlobAddArgs {
   author: string
   about: string
   version: string
+  tags: string[]
   scm: string
   blob: ReadStream
   baseUrl: string
 }
 
-export const add = async ({name, author, about, version, scm, blob, baseUrl} : BlobAddArgs, token : string) => {
+export const add = async ({name, author, about, version, scm, blob, baseUrl, tags} : BlobAddArgs, token : string) => {
   const formData : FormData = new FormData()
   const formParts :[string | ReadStream, string][] = [
     [name, 'name'],
     [author, 'author'],
     [about, 'about'],
     [version, 'version'],
+    [tags.join(','), 'tags'],
     [scm, 'scm'],
     [blob, 'blob']
   ]

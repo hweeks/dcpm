@@ -4,12 +4,13 @@ import { createUser } from "../../lib/routes/user";
 import { startMongoose } from "../../lib/server/db";
 
 describe('User', () => {
-  let connection : typeof mongoose
+  let db : typeof mongoose
   beforeAll(async () => {
-    connection = await startMongoose(global.__MONGO_URI__)
+    db = await startMongoose(global.__MONGO_URI__)
   })
   afterAll(async() => {
-    await connection.disconnect()
+    await db.connection.db.dropDatabase()
+    await db.connection.close()
   })
   test('creates a user', async () => {
     const body = {
@@ -23,7 +24,7 @@ describe('User', () => {
     await createUser(fakeReq, fakeRes, fakeNext)
     expect(fakeRes.send).toHaveBeenCalledTimes(1)
     expect(fakeNext).toHaveBeenCalledTimes(0)
-  }) 
+  })
   test('does not create a user', async () => {
     const body = {
       user: 'user',
@@ -36,5 +37,5 @@ describe('User', () => {
     await createUser(fakeReq, fakeRes, fakeNext)
     expect(fakeRes.send).toHaveBeenCalledTimes(0)
     expect(fakeNext).toHaveBeenCalledTimes(1)
-  }) 
+  })
 })

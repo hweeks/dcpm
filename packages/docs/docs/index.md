@@ -2,12 +2,12 @@
 
 ## Overview
 
-The dcpm has two fundamental chunks:
+The dcpm has a few fundamental chunks:
 
   1. the `dcpm` cli provided by the `@dcpm/cli` package
   1. the `dcpm` store provided by the `@dcpm/backend` package
 
-The dcpm backend will of course be the first package available from dcpm. Checkout the history of this monorepo to watch how I steer and guide this project via day one dogfooding.
+The dcpm backend will of course be the first package available from dcpm. Checkout the history of this monorepo to watch how I steer and guide this project via day one dog fooding.
 
 ### Manifest
 
