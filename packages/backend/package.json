@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "build": "tsc",
     "watch": "TS_NODE_FILES=true node --inspect=0.0.0.0 -r ts-node/register lib/server/index.ts",
     "watch:brk": "TS_NODE_FILES=true node --inspect-brk=0.0.0.0 -r ts-node/register lib/server/index.ts",

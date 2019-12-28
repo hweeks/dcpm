@@ -4,9 +4,9 @@ The main tool `dcpm` has a few things it can do.
 
 ## get
 
-Use: `dcpm get [package] [version]`
+Use: `dcpm get [package]@[version]`
 
-This will fetch whatever config you want. As of now, a version is needed.
+This will fetch whatever config you want. If no version, latest is grabbed. Version ranges work too.
 
 ## publish
 

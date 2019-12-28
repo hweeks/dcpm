@@ -2,24 +2,25 @@ import { Router, NextFunction, Response, Request } from "express";
 import jws from 'jws';
 import { User, IUserDoc } from "../models/user";
 import { Blob, IBlobDoc, IBlobPayload, VersionConfig } from "../models/blob";
-import { fileMiddleware, connection, gfs, } from "../server/db";
+import { fileMiddleware, gfs, } from "../server/db";
 import semver from 'semver'
 import { Types } from "mongoose";
 import { ObjectID } from "bson";
-import { getLatest } from "./search";
+import { getLatest, getVersionRange } from "./search";
 
 const router = Router();
 
-interface ParsingInput {
+export interface ParsingInput {
   name: string,
   author: string,
   about: string,
   version: string,
   scm: string,
-  token?: string | string[]
+  token?: string | string[],
+  tags: string[]
 }
 
-const parseInput = async ({name, author, about, version, scm, token} : ParsingInput) => {
+export const parseInput = ({name, author, about, version, scm, token, tags} : ParsingInput) => {
   if (!token) {
     throw new Error('A token is needed to add a blob. Try `dcpm auth` and then re-run `dcpm publish`.')
   }
@@ -40,7 +41,8 @@ const parseInput = async ({name, author, about, version, scm, token} : ParsingIn
     author: pAuthor,
     about: pAbout,
     version: pVersion,
-    scm: pScm
+    scm: pScm,
+    tags
   }
 }
 
@@ -64,7 +66,7 @@ const handleBlobUpdate = async (blobToUpdate : IBlobDoc, {name, version} : Parsi
   return await Blob.findOne({name})
 }
 
-const updateOrCreateBlob = async ({name, author, about, version, scm} : ParsingInput, foundUser: IUserDoc, file : Types.ObjectId) => {
+export const updateOrCreateBlob = async ({name, author, about, version, scm, tags} : ParsingInput, foundUser: IUserDoc, file : Types.ObjectId) => {
   const foundBlob = await Blob.findOne({name})
   if (!foundBlob) {
     const blobPayload : IBlobPayload = {
@@ -80,13 +82,14 @@ const updateOrCreateBlob = async ({name, author, about, version, scm} : ParsingI
       scm,
       authors: [
         foundUser._id
-      ]
+      ],
+      tags
     }
     return await Blob.create(blobPayload)
   } else {
     return await handleBlobUpdate(
       foundBlob,
-      {name, author, about, version, scm},
+      {name, author, about, version, scm, tags},
       foundUser,
       file
     )
@@ -97,13 +100,13 @@ const decodeToken = (token: string) => {
   return jws.decode(token)
 }
 
-const addBlob = async (req: Request, res: Response, next: NextFunction) => {
+export const addBlob = async (req: Request, res: Response, next: NextFunction) => {
   const {token} = req.headers
-  let {name, author, about, version, scm} = req.body
+  let {name, author, about, version, scm, tags} = req.body
   const file = req.file.id
   let sanitizedPayload
   try {
-    sanitizedPayload = await parseInput({name, author, about, version, scm, token})
+    sanitizedPayload = parseInput({name, author, about, version, scm, token, tags: tags.split(',')})
   } catch (error) {
     next(error)
     return
@@ -116,7 +119,7 @@ const addBlob = async (req: Request, res: Response, next: NextFunction) => {
   }
   try {
     await updateOrCreateBlob(sanitizedPayload, foundUser, file)
-    res.send('ok')
+    res.send({message:'ok'})
     next()
     return
   } catch (error) {
@@ -127,7 +130,7 @@ const addBlob = async (req: Request, res: Response, next: NextFunction) => {
 
 router.post('/api/blob/add', fileMiddleware.single('blob'), addBlob)
 
-const updateUser = async (req: Request, res: Response, next: NextFunction) => {
+export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   const {token} = req.headers
   const safeToken = Array.isArray(token) ? token[0] : token || ''
   let {username, action, name} = req.body
@@ -168,32 +171,29 @@ const updateUser = async (req: Request, res: Response, next: NextFunction) => {
 
 router.post('/api/blob/user', updateUser)
 
-const getBlob = async (req: Request, res: Response, next: NextFunction) => {
+export const getBlob = async (req: Request, res: Response, next: NextFunction) => {
   const {blob, version} = req.params
   const foundBlob = await Blob.findOne({name:blob})
   if (!foundBlob) {
     next(new Error(`We can't find a blob named ${blob}. Check the name and try again.`))
   }
   const blobObject = (foundBlob as IBlobDoc).toObject()
-  let foundVersion  
-  if (version !== 'latest.zip') {
-    foundVersion = blobObject.versions.find((currentVersion: VersionConfig) => {
-      return version.startsWith(currentVersion.version)
-    })
-  } else if (version === 'latest.zip') {    
-    const flatVersions = Array.isArray(blobObject.versions) && blobObject.versions.map(
-      (singleVersion : VersionConfig) => singleVersion.version
-    )
-    const latestVersion = getLatest(flatVersions)
-    foundVersion = blobObject.versions.find((currentVersion: VersionConfig) => {
-      return currentVersion.version === latestVersion
-    })
+  let foundVersion = ''
+  const requestedVersion = version.replace('.zip', '')
+  const flatVersions : string[] = blobObject.versions.map((singleVersion : VersionConfig) => singleVersion.version) || ['']
+  if (version === 'latest') {
+    foundVersion = getLatest(flatVersions)
+  } else {
+    foundVersion = getVersionRange(flatVersions, requestedVersion)
   }
-  if (!foundVersion) {
+  const versionConfig = blobObject.versions.find((currentVersion: VersionConfig) => {
+    return currentVersion.version === foundVersion
+  })
+  if (!versionConfig) {
     next(new Error(`We can't find a blob version ${version.replace('.zip', '')}. Check the version and try again.`))
   }
   const readStream = gfs.createReadStream({
-    _id: foundVersion.file.toString()
+    _id: versionConfig.file.toString()
   }).on('error', () => {
     throw new Error('Looks like we just can\'t handle that sort of request. Try again?')
   })

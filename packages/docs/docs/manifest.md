@@ -2,7 +2,7 @@
 
 ## Overview
 
-The manfests here are based heavily off of `npm`'s packages. I'm orignally a js dev, so if any of this looks like some excessive love for that style of code, empathize with me please.
+The manifests here are based heavily off of `npm`'s packages. I'm originally a js dev, so if any of this looks like some excessive love for that style of code, empathize with me please.
 
 A manifest for a deployed package looks like this:
 
@@ -12,6 +12,9 @@ about:
   author: 'hweeks <root@hweeks.com>'
   about: './README.md'
   version: '1.0.0'
+  tags:
+    - 'something'
+    - 'something else'
 remotes:
   scm: 'https://github.com/me/my-fancy-config'
   blobs: 'https://blobs.dcpm.dev'
@@ -39,9 +42,13 @@ The maintainer of your config.
 
 A semver compliant version of your package.
 
+#### tags
+
+These are hints for people looking up packages about what to expect from yours or what it does. It also makes the in-built search suck less.
+
 #### about
 
-This is the markdown flavored info about your package. At some point there will be a front end to view availabl packages.
+This is the markdown flavored info about your package. At some point there will be a front end to view available packages.
 
 ### remotes
 
