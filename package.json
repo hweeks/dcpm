@@ -10,6 +10,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "lint": "lerna run lint --parallel",
+    "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
     "release": "lerna run semantic-release --concurrency 1"
   },

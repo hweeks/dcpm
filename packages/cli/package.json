@@ -46,6 +46,7 @@
     "@types/archiver": "^3.0.0",
     "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.12.14",
+    "@types/semver": "^6.2.0",
     "@types/unzipper": "^0.10.1",
     "@types/yargs": "^13.0.3",
     "hweeks-semantic-release-monorepo": "^1.0.0",

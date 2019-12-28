@@ -35,6 +35,7 @@
   "devDependencies": {
     "@semantic-release/git": "^7.0.18",
     "@semantic-release/npm": "^5.3.4",
+    "@types/form-data": "^2.5.0",
     "@types/node-fetch": "^2.5.3",
     "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.1",
