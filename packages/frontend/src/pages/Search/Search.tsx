@@ -27,5 +27,3 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
 }, dispatch)
 
 export const Search = connect(mapStateToProps, mapDispatchToProps)(SearchComp)
-
-
