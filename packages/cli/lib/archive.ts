@@ -15,6 +15,7 @@ export interface BlobManifest {
     author: string;
     about: string;
     version: string;
+    tags: string[];
   }
   remotes: {
     scm: string;

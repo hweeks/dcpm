@@ -1,12 +1,14 @@
-import { createReadStream, ReadStream} from "fs";
+import { createReadStream, readFile, statSync} from "fs";
+import path from 'path'
 import chalk from "chalk";
 import { Blob, User } from "@dcpm/api";
 import { DcpmConfig, cwd } from "./config";
 import { tmpDir, decompressToFolder, compressFolder } from "./archive";
+import { promisify } from "util";
+
+const asyncRead = promisify(readFile)
 const log = console.log
-
-const warnLog = (message : string) => log(chalk.yellow(message))
-
+const warn = (message : string) => log(chalk.yellow(message))
 const BuiltConfig = new DcpmConfig()
 
 export const getCommand = async (packageName: string, packageVersion: string) => {
@@ -21,10 +23,20 @@ export const getCommand = async (packageName: string, packageVersion: string) =>
       location: writeLocation
     })
     await decompressToFolder(writeLocation, `${cwd}/${packageName}`)
-    console.log(`Managed to grab ${packageName} at version ${packageVersion}, just barely.`)
+    log(`Managed to grab ${packageName} at version ${packageVersion}, just barely.`)
   } catch (error) {
     const {message} = error
-    warnLog(message || 'We blew up trying to get your package, but I have no idea why.')
+    warn(message || 'We blew up trying to get your package, but I have no idea why.')
+  }
+}
+
+const getReadmeContent = async (fileLocation : string) => {
+  const filePath = path.resolve(cwd, fileLocation)
+  const fileInfo = statSync(filePath)
+  if (fileInfo.isFile()) {
+    return asyncRead(filePath, 'utf8')
+  } else {
+    throw new Error(`There was no readable file at ${filePath}, double check your config.`)
   }
 }
 
@@ -35,19 +47,21 @@ export const publishCommand = async () => {
   const manifestInfo = zipInfo.config
   const zipLocation = zipInfo.location
   try {
-    await Blob.add({
+    const blobPayload = {
       name: manifestInfo.about.name,
       author: manifestInfo.about.author,
-      about: manifestInfo.about.about,
+      about: await getReadmeContent(manifestInfo.about.about),
       version: manifestInfo.about.version,
+      tags: manifestInfo.about.tags,
       scm: manifestInfo.remotes.scm,
       baseUrl: blobUrl,
-      blob: createReadStream(zipLocation) as unknown as ReadStream
-    }, currentConfig.token || '')
-    console.log(`Published ${manifestInfo.about.name} to ${blobUrl}, nice.`)
+      blob: createReadStream(zipLocation)
+    }
+    await Blob.add(blobPayload, currentConfig.token || '')
+    log(`Published ${manifestInfo.about.name} to ${blobUrl}, nice.`)
   } catch (error) {
     const {message} = error
-    warnLog(message || 'We blew up trying to publish your package, but I have no idea why.')
+    warn(message || 'We blew up trying to publish your package, but I have no idea why.')
   }
 }
 
@@ -57,10 +71,16 @@ export const loginOrCreateCommand = async (username: string, password: string) =
   try {
     const token = await User.login(username, password, blobUrl)
     await BuiltConfig.setConfig({token})
-    console.log(`Looks like we _just_ managed to get ${username} all logged in.`)
+    log(`Looks like we _just_ managed to get ${username} all logged in.`)
   } catch (error) {
     const {message} = error
-    warnLog(message || 'We blew up trying to log you in, but I have no idea why.')
+    if (message.includes(username)) {
+      const newToken = await User.create(username, password, blobUrl)
+      await BuiltConfig.setConfig({token: newToken})
+      log(`Looks like we _just_ managed to get ${username} created.`)
+    } else {
+      warn(message || 'We blew up trying to log you in, but I have no idea why.')
+    }
   }
 }
 
@@ -74,9 +94,9 @@ export const modifyPermsCommand = async (user: string, action: 'add' | 'remove',
       name: packageName,
       baseUrl: blobUrl
     }, currentConfig.token || '')
-    console.log(`We've ${action}ed ${user} ${action === 'add' ? 'to' : 'from'} ${packageName}`)
+    log(`We've ${action}ed ${user} ${action === 'add' ? 'to' : 'from'} ${packageName}`)
   } catch (error) {
     const {message} = error
-    warnLog(message || 'We blew up trying to modify package permissions, but I have no idea why.')
+    warn(message || 'We blew up trying to modify package permissions, but I have no idea why.')
   }
 }
