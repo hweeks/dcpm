@@ -1,5 +1,6 @@
 node_modules
 __tests__
+dist
 setup
 *.yml
 Dockerfile.dev

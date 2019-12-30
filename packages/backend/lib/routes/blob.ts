@@ -46,8 +46,8 @@ export const parseInput = ({name, author, about, version, scm, token, tags} : Pa
   }
 }
 
-const handleBlobUpdate = async (blobToUpdate : IBlobDoc, {name, version} : ParsingInput, foundUser: IUserDoc, file : Types.ObjectId) => {
-  const currentDoc = blobToUpdate.toObject()
+const handleBlobUpdate = async (blobToUpdate : IBlobDoc, {name, version, tags, about, scm} : ParsingInput, foundUser: IUserDoc, file : Types.ObjectId) => {
+  let currentDoc = blobToUpdate.toObject()
   const foundAuthor = currentDoc.authors.find((singleAuthor: any) => {
     return singleAuthor.toString() === foundUser.id
   })
@@ -62,6 +62,7 @@ const handleBlobUpdate = async (blobToUpdate : IBlobDoc, {name, version} : Parsi
     version,
     file
   })
+  currentDoc = {...currentDoc, tags, about, scm}
   await blobToUpdate.updateOne(currentDoc)
   return await Blob.findOne({name})
 }
