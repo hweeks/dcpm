@@ -12,14 +12,22 @@
     "lint": "lerna run lint --parallel",
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
-    "release": "lerna run semantic-release --concurrency 1"
+    "release": "lerna run semantic-release --concurrency 1",
+    "commit": "git-cz"
   },
   "private": true,
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.6.0",
     "eslint-plugin-react": "^7.17.0",
     "typescript": "^3.7.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

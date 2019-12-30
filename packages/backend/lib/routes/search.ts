@@ -1,6 +1,7 @@
 import { Router, NextFunction, Response, Request } from "express";
 import { Blob } from "../models/blob";
 import semver from "semver"
+import { User } from "../models/user";
 
 const router = Router();
 
@@ -25,15 +26,17 @@ const findBlob = async (req: Request, res: Response, next: NextFunction) => {
   const queryResult = [...tagSearch, ...nameSearch]
   const hasResults = queryResult && queryResult.length > 0
   if (hasResults) {
-    const parsedResults = queryResult.map(blobDoc => {
-      const {name, versions, tags} = blobDoc
+    const parsedResults = queryResult.map(async (blobDoc) => {
+      const {name, versions, tags, about, scm, owner} = blobDoc
+      const ownerName = await User.findById(owner)
       const flatVersions : string[] = versions.map(singleVersion => singleVersion.version) || ['']
       const requestedVersion = searchVersion ?
         getVersionRange(flatVersions, searchVersion) :
         getLatest(flatVersions)
-      return {name, versions: flatVersions, requestedVersion, tags}
+      return {name, versions: flatVersions, requestedVersion, tags, about, scm, owner: ownerName?.username}
     })
-    res.send(parsedResults)
+    const allResults = await Promise.all(parsedResults)
+    res.send(allResults)
   } else {
     res.send({})
   }

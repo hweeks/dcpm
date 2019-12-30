@@ -2,6 +2,7 @@
 
 import yargs from "yargs";
 import semver from "semver"
+import inquirer from "inquirer";
 import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand} from './actions'
 
 yargs
@@ -28,11 +29,25 @@ yargs
     }
   )
   .command(
-    'auth <user> [password]',
-    'authenticate yourself to enable publishing, will also create an account if a new username',
+    'auth',
+    'login or create a user',
     {},
-    function ({user, password}) {
-      loginOrCreateCommand(user as string, password as string)
+    function () {
+      inquirer.prompt([
+        {
+          type: 'input',
+          name: 'username',
+          message: "username:"
+        },
+        {
+          type: 'password',
+          name: 'password',
+          message: "password:"
+        },
+      ]).then(answers => {
+        const {username, password} = answers
+        loginOrCreateCommand(username as string, password as string)
+      })
     }
   )
   .command(
