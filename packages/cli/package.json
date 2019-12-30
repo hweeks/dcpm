@@ -1,6 +1,6 @@
 {
   "name": "@dcpm/cli",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "The cli for dcpm",
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
