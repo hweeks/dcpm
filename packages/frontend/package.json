@@ -18,7 +18,6 @@
     "url": "git+https://github.com/hweeks/dcpm.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
     "dev": "webpack-dev-server --config=webpack.config.dev.js",
     "build": "webpack"
   },
