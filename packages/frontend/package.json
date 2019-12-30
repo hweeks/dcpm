@@ -19,7 +19,8 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "dev": "webpack-dev-server --config=webpack.config.dev.js"
+    "dev": "webpack-dev-server --config=webpack.config.dev.js",
+    "build": "webpack"
   },
   "bugs": {
     "url": "https://github.com/hweeks/dcpm/issues"
@@ -47,6 +48,9 @@
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "http-proxy-middleware": "^0.20.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",

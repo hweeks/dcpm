@@ -8,6 +8,9 @@ theme:
     primary: 'orange'
     accent: 'deep orange'
   name: 'material'
+  font:
+    text: 'Montserrat'
+    code: 'Cousine'
 markdown_extensions:
   - admonition
   - codehilite:

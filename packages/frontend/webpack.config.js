@@ -3,12 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     main: "./src/index.tsx",
-    vendor: ['react', 'react-dom', 'redux'],
+    vendor: ['react', 'react-dom', 'redux', 'styled-components'],
   },
-  devtool: "eval-source-map",
   output: {
     path: `${__dirname}/static`,
     filename: '[name].bundle.js',
@@ -23,18 +22,10 @@ module.exports = {
             loader: "ts-loader"
           }
         ]
-      },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader"
       }
     ]
   },
   resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom'
-    },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   optimization: {
@@ -60,19 +51,11 @@ module.exports = {
       }
     }
   },
-  devServer: {
-    hot: true,
-    historyApiFallback: true,
-    proxy: {
-      '/api': 'http://localhost:3000'
-    }
-  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'dcpm',
       template: './static/index-template.html'
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
 }
