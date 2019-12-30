@@ -64,6 +64,8 @@ pipeline {
         sh """
           cd packages/backend
           ./docker-build-n-tag.sh
+          cd ../front-end
+          ./docker-build-n-tag.sh
           docker system prune -a -f --volumes
         """
       }
