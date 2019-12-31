@@ -7,10 +7,19 @@ import { ResultWrapper,
   ResultTags
 } from "./styles";
 import { SearchResult } from '../../reducers/search';
+import { Link } from 'react-router-dom';
 
-export const Result = ({name, requestedVersion, tags}: SearchResult) => (<ResultWrapper>
+const handleSelect = (selectCallback: (pkg: string) => void, name : string) => {
+  selectCallback(name)
+}
+
+interface ResultProps extends SearchResult {
+  select: (pkg: string) => void
+}
+
+export const Result = ({name, requestedVersion, tags, select}: ResultProps) => (<ResultWrapper>
   <ResultTopRow>
-    <ResultName>{name}</ResultName>
+    <ResultName to={`/package/${name}`}>{name}</ResultName>
     <ResultCommand>
       dcpm get {name}@{requestedVersion}
     </ResultCommand>
