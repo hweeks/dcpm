@@ -14,6 +14,7 @@ import {
 import { reducer } from "./reducers";
 import { theme } from "./theme";
 import { Nav } from "./comps/Nav";
+import { Blob } from "./pages/Blob";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,600|Montserrat:400,600&display=swap');
@@ -54,6 +55,8 @@ export const App = () => (
             <Switch>
               <Route path="/search">
                 <Search />
+              </Route>
+              <Route path="/package/:pkg" component={Blob}>
               </Route>
               <Route path="/">
                 <Home />

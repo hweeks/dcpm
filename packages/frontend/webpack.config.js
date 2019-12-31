@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: `${__dirname}/static`,
     filename: '[name].bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [

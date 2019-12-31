@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const ResultWrapper = styled.div`
   height: ${props => props.theme.height8};
@@ -23,10 +24,17 @@ export const ResultBottomRow = styled.div`
   display: flex;
 `
 
-export const ResultName = styled.h2`
+export const ResultName = styled(Link)`
   font-family: ${props => props.theme.mainFont};
   font-size: ${props => props.theme.font3};
   font-weight: ${props => props.theme.heavyWeight};
+  color: ${props => props.theme.primary};
+  &:visited {
+    color: ${props => props.theme.primary};
+  }
+  &:hover {
+    color: ${props => props.theme.accent};
+  }
 `
 
 export const ResultCommand = styled.span`
