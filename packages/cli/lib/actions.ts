@@ -3,8 +3,9 @@ import path from 'path'
 import chalk from "chalk";
 import { Blob, User } from "@dcpm/api";
 import { DcpmConfig, cwd } from "./config";
-import { tmpDir, decompressToFolder, compressFolder } from "./archive";
+import { tmpDir, decompressToFolder, compressFolder, getManifest } from "./file-actions";
 import { promisify } from "util";
+import { runInContext } from "./cmd";
 
 const asyncRead = promisify(readFile)
 const log = console.log
@@ -98,5 +99,22 @@ export const modifyPermsCommand = async (user: string, action: 'add' | 'remove',
   } catch (error) {
     const {message} = error
     warn(message || 'We blew up trying to modify package permissions, but I have no idea why.')
+  }
+}
+
+export const executeCommand = async (script: string) => {
+  try {
+    const manifestInfo = await getManifest(cwd)
+    if (manifestInfo.scripts) {
+      const possibleScript = manifestInfo.scripts[script]
+      if (!possibleScript) {
+        throw new Error(`I really couldn't find any scripts by the name ${script} in ${cwd}. Maybe you fat fingered it?`)
+      }
+      await runInContext(possibleScript)
+      log(`We have now run ${script}, I hope you got what you wanted from it.`)
+    }
+  } catch (error) {
+    const {message} = error
+    warn(message || 'We blew up trying to run a script, but I have no idea why.')
   }
 }

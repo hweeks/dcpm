@@ -22,6 +22,8 @@ config: './docker-compose.yml'
 overrides:
   dev: './docker-compose.dev.yml'
   stable: './docker-compose.stable.yml'
+scripts:
+  configure: './some-bash-file.sh'
 supports:
   docker: '19.03.1'
   docker-compose: '1.24.1'
@@ -69,6 +71,10 @@ This is just the location of your compose file.
 ### overrides
 
 Optional: This is a listing of all your different environment overrides.
+
+### scripts
+
+Optional: This is a listing of helper scripts you've built. It runs in the CWD of the package executing it. Currently logs output, no nice error catching or anything of merit.
 
 ### supports
 

@@ -3,7 +3,7 @@
 import yargs from "yargs";
 import semver from "semver"
 import inquirer from "inquirer";
-import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand} from './actions'
+import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand, executeCommand} from './actions'
 
 yargs
   .command(
@@ -64,6 +64,14 @@ yargs
     {},
     function ({user, name}) {
       modifyPermsCommand(user as string, 'remove', name as string)
+    }
+  )
+  .command(
+    'run <script>',
+    'run a manifest script',
+    {},
+    function ({script}) {
+      executeCommand(script as string)
     }
   )
   .help()
