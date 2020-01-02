@@ -29,6 +29,9 @@ export interface BlobManifest {
     docker: string
     'docker-compose': string
   }
+  scripts?: {
+    [key: string]: string
+  }
 }
 
 export interface ZipResolve {
@@ -98,4 +101,17 @@ export const decompressToFolder = async (pathIn: string, destination: string) =>
     throw new Error('We are decompressing files here, not directories or nothing. Tough luck kiddo.')
   }
   return unarchiveSync(pathIn, destination)
+}
+
+
+export const getManifest = async (pathIn : string) => {
+  const manifestPath = `${pathIn}/manifest.yml`
+  const checkForFile = await statSync(manifestPath)
+  if (checkForFile.isFile()) {
+    const manifestFile = await asyncRead(manifestPath, 'utf8')
+    const dcpmConfig : BlobManifest = yaml.safeLoad(manifestFile)
+    return dcpmConfig
+  } else {
+    throw new Error(`There's no manifest at ${manifestPath}, what's up with that?`)
+  }
 }
