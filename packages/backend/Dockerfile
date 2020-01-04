@@ -13,7 +13,7 @@ COPY . /app/be/
 
 RUN cd /app/be && yarn install --production=false && \
     yarn build && rm -rf node_modules && \
-    yarn install
+    yarn install && mkdir /app/be/logs
 
 ENV NODE_ENV=${NODE_ENV}
 
