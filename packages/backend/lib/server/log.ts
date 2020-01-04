@@ -22,13 +22,6 @@ const getStreams = () => {
       type: 'rotating-file',
       period: '1d',
       count: 3,
-      level: 'debug',
-      path: '/app/be/logs/debug.log'
-    },
-    {
-      type: 'rotating-file',
-      period: '1d',
-      count: 3,
       level: 'error',
       path: '/app/be/logs/error.log'
     },
