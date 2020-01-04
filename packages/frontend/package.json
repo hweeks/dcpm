@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "@dcpm/frontend",
   "version": "0.0.0",
   "description": "The frontend for dcpm",
   "author": "hamsolo <root@hweeks.com>",
@@ -19,7 +19,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config=webpack.config.dev.js",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint src/ --ext .ts,.tsx"
   },
   "bugs": {
     "url": "https://github.com/hweeks/dcpm/issues"
@@ -34,6 +35,9 @@
     "@types/react-router": "^5.1.3",
     "@types/react-router-dom": "^5.1.3",
     "@types/styled-components": "^4.4.1",
+    "@typescript-eslint/eslint-plugin": "2.7.0",
+    "@typescript-eslint/parser": "2.7.0",
+    "eslint": "6.6.0",
     "html-webpack-plugin": "^3.2.0",
     "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.2",

@@ -31,12 +31,12 @@
     "lint": "eslint lib/**/*.ts"
   },
   "dependencies": {
-    "@dcpm/api": "^1.4.1",
     "archiver": "^3.1.1",
     "chalk": "^3.0.0",
     "form-data": "^3.0.0",
     "inquirer": "^7.0.1",
     "js-yaml": "^3.13.1",
+    "node-fetch": "^2.6.0",
     "semver": "^7.1.1",
     "unzipper": "^0.10.5",
     "yargs": "^14.2.0"
@@ -48,12 +48,16 @@
     "@types/inquirer": "^6.5.0",
     "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.12.14",
+    "@types/node-fetch": "^2.5.4",
     "@types/semver": "^6.2.0",
     "@types/unzipper": "^0.10.1",
     "@types/yargs": "^13.0.3",
+    "@typescript-eslint/eslint-plugin": "2.7.0",
+    "@typescript-eslint/parser": "2.7.0",
+    "eslint": "6.6.0",
     "hweeks-semantic-release-monorepo": "^1.0.0",
     "nodemon": "^2.0.1",
-    "semantic-release": "^15.13.31",
+    "semantic-release": "15.13.31",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }

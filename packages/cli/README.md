@@ -22,6 +22,14 @@ To login just run:
 
 This will prompt for a username and password and log you in, or create an account if it's a new username, and save your token to `~/.dcpm`.
 
+### run
+
+You can run any of the scripts in a manifest via:
+
+    dcpm run <script-name>
+
+This will run the script and output the result to your command line. This is an early feature, expect changes.
+
 ### get
 
 The most simple use case is fetching a simple package:
