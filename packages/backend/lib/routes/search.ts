@@ -2,6 +2,7 @@ import { Router, NextFunction, Response, Request } from "express";
 import { Blob } from "../models/blob";
 import semver from "semver"
 import { User } from "../models/user";
+import { logger } from "../server/log";
 
 const router = Router();
 
@@ -38,6 +39,7 @@ const findBlob = async (req: Request, res: Response, next: NextFunction) => {
     const allResults = await Promise.all(parsedResults)
     res.send(allResults)
   } else {
+    logger.debug({message: 'Search Failure', req})
     res.send({})
   }
 }

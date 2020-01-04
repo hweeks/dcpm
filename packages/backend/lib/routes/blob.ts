@@ -178,11 +178,11 @@ export const getBlob = async (req: Request, res: Response, next: NextFunction) =
   if (!foundBlob) {
     next(new Error(`We can't find a blob named ${blob}. Check the name and try again.`))
   }
-  const blobObject = (foundBlob as IBlobDoc).toObject()
+  const blobObject = foundBlob?.toObject()
   let foundVersion = ''
   const requestedVersion = version.replace('.zip', '')
   const flatVersions : string[] = blobObject.versions.map((singleVersion : VersionConfig) => singleVersion.version) || ['']
-  if (version === 'latest') {
+  if (version.includes('latest')) {
     foundVersion = getLatest(flatVersions)
   } else {
     foundVersion = getVersionRange(flatVersions, requestedVersion)
@@ -191,12 +191,14 @@ export const getBlob = async (req: Request, res: Response, next: NextFunction) =
     return currentVersion.version === foundVersion
   })
   if (!versionConfig) {
-    next(new Error(`We can't find a blob version ${version.replace('.zip', '')}. Check the version and try again.`))
+    next(new Error(`We can't find a blob version ${requestedVersion}. Check the version and try again.`))
+    return
   }
   const readStream = gfs.createReadStream({
     _id: versionConfig.file.toString()
   }).on('error', () => {
-    throw new Error('Looks like we just can\'t handle that sort of request. Try again?')
+    const errorOut = new Error('Looks like we just can\'t handle that sort of request. Try again?')
+    next(errorOut)
   })
   res.set('Content-Type', 'application/zip')
   readStream.pipe(res)
