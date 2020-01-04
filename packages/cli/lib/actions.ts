@@ -1,7 +1,7 @@
 import { createReadStream, readFile, statSync} from "fs";
 import path from 'path'
 import chalk from "chalk";
-import { Blob, User } from "@dcpm/api";
+import { Blob, User } from "./api";
 import { DcpmConfig, cwd } from "./config";
 import { tmpDir, decompressToFolder, compressFolder, getManifest } from "./file-actions";
 import { promisify } from "util";
