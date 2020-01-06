@@ -21,12 +21,6 @@ The main way to interact with our configs. The cli tool allows pulling and pushi
 
 See [Use](/use/)
 
-### Backend
-
-What is does our API need?
-
-See [API](/api/)
-
 ## What is this?
 
 Conceptually this is a simple way to share simple configs. This is far less feature rich than kubernetes, but it's not trying to solve that problem. This tool I'm envisioning as an easy way to share some simple configs with folks.

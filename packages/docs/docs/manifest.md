@@ -84,6 +84,14 @@ Optional: This is a listing of helper scripts you've built. It runs in the CWD o
 
 Optional: This is a mapping of what versions you support of docker and docker-compose.
 
+#### docker
+
+The version of docker you support. Ranges are fine.
+
+#### docker-compose
+
+The version of docker-compose you support. Ranges are fine.
+
 ### env
 
 Optional: This is an array of objects of this shape:
@@ -94,12 +102,4 @@ msg: The question to prompt you user with
 fallback: The default value
 ```
 
-Fallback is optional, the user will be asked these questions an a .env will be built automatically. This can be used to make setup nice and easy for an end user.
-
-#### docker
-
-The version of docker you support. Ranges are fine.
-
-#### docker-compose
-
-The version of docker-compose you support. Ranges are fine.
+Fallback is optional, the user will be asked these questions and a .env will be built automatically. This can be used to make setup nice and easy for an end user.
