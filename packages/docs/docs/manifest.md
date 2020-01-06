@@ -27,6 +27,10 @@ scripts:
 supports:
   docker: '19.03.1'
   docker-compose: '1.24.1'
+env:
+  - var: SOME_VAR
+    msg: What is your favorite color?
+    fallback: red
 ```
 ### about
 
@@ -79,6 +83,18 @@ Optional: This is a listing of helper scripts you've built. It runs in the CWD o
 ### supports
 
 Optional: This is a mapping of what versions you support of docker and docker-compose.
+
+### env
+
+Optional: This is an array of objects of this shape:
+
+```
+var: The variable name
+msg: The question to prompt you user with
+fallback: The default value
+```
+
+Fallback is optional, the user will be asked these questions an a .env will be built automatically. This can be used to make setup nice and easy for an end user.
 
 #### docker
 

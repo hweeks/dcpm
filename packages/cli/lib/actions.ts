@@ -1,13 +1,15 @@
-import { createReadStream, readFile, statSync} from "fs";
+import { createReadStream, readFile, statSync, writeFile} from "fs";
 import path from 'path'
 import chalk from "chalk";
 import { Blob, User } from "./api";
 import { DcpmConfig, cwd } from "./config";
-import { tmpDir, decompressToFolder, compressFolder, getManifest } from "./file-actions";
+import { tmpDir, decompressToFolder, compressFolder, getManifest, EnvQuestion } from "./file-actions";
 import { promisify } from "util";
 import { runInContext } from "./cmd";
+import inquirer, { InputQuestion } from "inquirer";
 
 const asyncRead = promisify(readFile)
+const asyncWrite = promisify(writeFile)
 const log = console.log
 const warn = (message : string) => log(chalk.yellow(message))
 const BuiltConfig = new DcpmConfig()
@@ -118,3 +120,39 @@ export const executeCommand = async (script: string) => {
     warn(message || 'We blew up trying to run a script, but I have no idea why.')
   }
 }
+
+export const runSetup = async () => {
+  try {
+    const manifestInfo = await getManifest(cwd)
+    if (manifestInfo.env?.length) {
+      const questions = manifestInfo.env.map((questionConfig : EnvQuestion) => {
+        const inputConfig : InputQuestion = {
+          type: 'input',
+          name: questionConfig.var,
+          message: questionConfig.msg,
+        }
+        if (questionConfig.fallback) {
+          inputConfig.default = questionConfig.fallback
+        }
+        return inputConfig
+      })
+      inquirer.prompt(questions).then(async (answers) => {
+        let envFile = ''
+        for (const [key,value] of Object.entries(answers)) {
+          envFile += `${key}=${value}\n`
+        }
+        await asyncWrite(`${cwd}/.env`, envFile)
+        log(`We've written your env file to ${cwd}/.env. You're now all setup.`)
+      }).catch(err => {
+        throw new Error(`We couldn't setup this project because of ${err.message}`)
+      })
+    } else {
+      log('There is not any setup script in this package. Sorry.')
+    }
+  } catch (error) {
+    const {message} = error
+    warn(message || 'We blew up trying to run setup, but I have no idea why.')
+  }
+}
+
+runSetup()

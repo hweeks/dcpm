@@ -30,6 +30,14 @@ You can run any of the scripts in a manifest via:
 
 This will run the script and output the result to your command line. This is an early feature, expect changes.
 
+### setup
+
+To create a `.env` file with the correct values run:
+
+    dcpm setup
+
+This will ask you a series of questions and then write a `.env` file. If the manifest doesn't have any setup it will let you know.
+
 ### get
 
 The most simple use case is fetching a simple package:
