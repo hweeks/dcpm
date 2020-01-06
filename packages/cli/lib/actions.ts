@@ -154,5 +154,3 @@ export const runSetup = async () => {
     warn(message || 'We blew up trying to run setup, but I have no idea why.')
   }
 }
-
-runSetup()
