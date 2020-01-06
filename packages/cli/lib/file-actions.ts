@@ -9,6 +9,12 @@ import archiver from 'archiver'
 const asyncRead = promisify(fs.readFile)
 export const tmpDir = os.tmpdir()
 
+export interface EnvQuestion {
+  var: string,
+  msg: string,
+  fallback?: string,
+}
+
 export interface BlobManifest {
   about: {
     name: string;
@@ -32,6 +38,7 @@ export interface BlobManifest {
   scripts?: {
     [key: string]: string
   }
+  env?: EnvQuestion[]
 }
 
 export interface ZipResolve {
