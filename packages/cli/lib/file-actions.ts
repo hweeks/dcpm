@@ -1,5 +1,5 @@
 import {promisify} from 'util'
-import fs, { statSync, stat } from 'fs'
+import fs, { statSync } from 'fs'
 import path from 'path'
 import os from 'os'
 import unzipper from 'unzipper'
