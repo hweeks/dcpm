@@ -103,3 +103,7 @@ fallback: The default value
 ```
 
 Fallback is optional, the user will be asked these questions and a .env will be built automatically. This can be used to make setup nice and easy for an end user.
+
+## Defining Files to Keep and Ignore
+
+By default we zip up everything in your configs, about, overrides, and manifest. You can also add a `.dcpmkeep` and a `.dcpmignore` file. These accept standard glob patterns, with the ignore always overriding the keep if specified. If you want to include any 'dot files', make sure to do so explicitly in your `.dcpmkeep` file.
