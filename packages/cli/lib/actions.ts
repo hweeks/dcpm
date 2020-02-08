@@ -2,11 +2,12 @@ import { createReadStream, readFile, statSync, writeFile} from "fs";
 import path from 'path'
 import chalk from "chalk";
 import { Blob, User } from "./api";
-import { DcpmConfig, cwd } from "./config";
-import { tmpDir, decompressToFolder, compressFolder, getManifest, EnvQuestion } from "./file-actions";
+import { DcpmConfig, cwd } from "./helpers/config";
+import { tmpDir, decompressToFolder, compressFolder } from "./helpers/archive";
+import { getManifest, runConfigBuilder } from "./helpers/manifest";
 import { promisify } from "util";
-import { runInContext } from "./cmd";
-import inquirer, { InputQuestion } from "inquirer";
+import { runInContext } from "./helpers/cmd";
+import Mustache from "mustache";
 
 const asyncRead = promisify(readFile)
 const asyncWrite = promisify(writeFile)
@@ -125,27 +126,11 @@ export const runSetup = async () => {
   try {
     const manifestInfo = await getManifest(cwd)
     if (manifestInfo.env?.length) {
-      const questions = manifestInfo.env.map((questionConfig : EnvQuestion) => {
-        const inputConfig : InputQuestion = {
-          type: 'input',
-          name: questionConfig.var,
-          message: questionConfig.msg,
-        }
-        if (questionConfig.fallback) {
-          inputConfig.default = questionConfig.fallback
-        }
-        return inputConfig
-      })
-      inquirer.prompt(questions).then(async (answers) => {
-        let envFile = ''
-        for (const [key,value] of Object.entries(answers)) {
-          envFile += `${key}=${value}\n`
-        }
-        await asyncWrite(`${cwd}/.env`, envFile)
-        log(`We've written your env file to ${cwd}/.env. You're now all setup.`)
-      }).catch(err => {
-        throw new Error(`We couldn't setup this project because of ${err.message}`)
-      })
+      const answers = await runConfigBuilder(manifestInfo.env)
+      const envChoices = [...Object.entries(answers)]
+      const envFileTemplate = await asyncRead(`${__dirname}/templates/env.mustache`, 'utf8')
+      const envFile = Mustache.render(envFileTemplate, {env: envChoices})
+      await asyncWrite(`${cwd}/.env`, envFile)
     } else {
       log('There is not any setup script in this package. Sorry.')
     }
@@ -154,3 +139,27 @@ export const runSetup = async () => {
     warn(message || 'We blew up trying to run setup, but I have no idea why.')
   }
 }
+
+export const buildAdditionalConfigs = async () => {
+  try {
+    const manifestInfo = await getManifest(cwd)
+    if (manifestInfo.extraConfigs) {
+      const allConfigsToBuild = manifestInfo.extraConfigs.map(async configToBuild => {
+        const answers = await runConfigBuilder(configToBuild.questions)
+        let answerObject = [...Object.entries(answers)]
+        const fileTemplate = await asyncRead(path.resolve(cwd, configToBuild.template), 'utf8')
+        debugger
+        const builtFile = Mustache.render(fileTemplate, answers)
+        await asyncWrite(path.resolve(cwd, configToBuild.output), builtFile)
+        log(`Alright, we built your file and plopped it here: ${configToBuild.output}`)
+      })
+      await Promise.all(allConfigsToBuild)
+    } else {
+      warn('I really can\'t just come up with questions to ask, we are not using blockchain or AI here, I\'m no unicorn.')
+    }
+  } catch (error) {
+    const {message} = error
+    warn(message || 'We blew up trying to build more configs, but I have no idea why.')
+  }
+}
+buildAdditionalConfigs()

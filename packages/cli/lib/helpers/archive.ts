@@ -6,6 +6,7 @@ import unzipper from 'unzipper'
 import yaml from 'js-yaml'
 import archiver from 'archiver'
 import glob from 'glob'
+import { BlobManifest } from './manifest'
 
 const asyncRead = promisify(fs.readFile)
 const asyncGlob = promisify(glob)
@@ -15,32 +16,6 @@ export interface EnvQuestion {
   var: string,
   msg: string,
   fallback?: string,
-}
-
-export interface BlobManifest {
-  about: {
-    name: string;
-    author: string;
-    about: string;
-    version: string;
-    tags: string[];
-  }
-  remotes: {
-    scm: string;
-    blobs: string;
-  }
-  config: string;
-  overrides: {
-    [key: string]: string
-  }
-  supports: {
-    docker: string
-    'docker-compose': string
-  }
-  scripts?: {
-    [key: string]: string
-  }
-  env?: EnvQuestion[]
 }
 
 export interface ZipResolve {
@@ -131,15 +106,6 @@ const determineFilesToZip = async (pathIn: string) => {
   return [...finalFiles ].filter(file => Boolean(file) && !ignoreFiles.includes(file))
 }
 
-export const compressFolder = async (pathIn: string) => {
-  const checkForDirectory = await statSync(pathIn)
-  if (!checkForDirectory.isDirectory()) {
-    throw new Error('We are zipping up directories here, not files or nothing. Tough luck kiddo.')
-  }
-  const filesToZip = await determineFilesToZip(pathIn)
-  return archiveSync(pathIn, filesToZip)
-}
-
 const unarchiveSync = (pathIn: string, destination: string) => {
   return new Promise((resolve, reject) => {
     const zipFile = fs.createReadStream(pathIn)
@@ -151,23 +117,19 @@ const unarchiveSync = (pathIn: string, destination: string) => {
   })
 }
 
+export const compressFolder = async (pathIn: string) => {
+  const checkForDirectory = await statSync(pathIn)
+  if (!checkForDirectory.isDirectory()) {
+    throw new Error('We are zipping up directories here, not files or nothing. Tough luck kiddo.')
+  }
+  const filesToZip = await determineFilesToZip(pathIn)
+  return archiveSync(pathIn, filesToZip)
+}
+
 export const decompressToFolder = async (pathIn: string, destination: string) => {
   const checkForDirectory = await statSync(pathIn)
   if (!checkForDirectory.isFile()) {
     throw new Error('We are decompressing files here, not directories or nothing. Tough luck kiddo.')
   }
   return unarchiveSync(pathIn, destination)
-}
-
-
-export const getManifest = async (pathIn : string) => {
-  const manifestPath = `${pathIn}/manifest.yml`
-  const checkForFile = await statSync(manifestPath)
-  if (checkForFile.isFile()) {
-    const manifestFile = await asyncRead(manifestPath, 'utf8')
-    const dcpmConfig : BlobManifest = yaml.safeLoad(manifestFile)
-    return dcpmConfig
-  } else {
-    throw new Error(`There's no manifest at ${manifestPath}, what's up with that?`)
-  }
 }

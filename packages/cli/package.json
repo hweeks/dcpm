@@ -28,7 +28,9 @@
     "watch:brk": "TS_NODE_FILES=true node --inspect-brk=127.0.0.1:9222 -r ts-node/register ./lib/index.ts",
     "dev": "nodemon",
     "semantic-release": "semantic-release -e hweeks-semantic-release-monorepo",
-    "lint": "eslint lib/**/*.ts"
+    "lint": "eslint lib/**/*.ts",
+    "test": "jest",
+    "test:debug": "node --inspect-brk $(npm bin)/jest --watchAll --no-cache --runInBand"
   },
   "dependencies": {
     "archiver": "^3.1.1",
@@ -37,6 +39,7 @@
     "glob": "^7.1.6",
     "inquirer": "^7.0.1",
     "js-yaml": "^3.13.1",
+    "mustache": "^4.0.0",
     "node-fetch": "^2.6.0",
     "semver": "^7.1.1",
     "unzipper": "^0.10.5",
@@ -47,7 +50,9 @@
     "@semantic-release/npm": "^5.3.4",
     "@types/archiver": "^3.0.0",
     "@types/inquirer": "^6.5.0",
+    "@types/jest": "^25.1.2",
     "@types/js-yaml": "^3.12.1",
+    "@types/mustache": "^4.0.0",
     "@types/node": "^12.12.14",
     "@types/node-fetch": "^2.5.4",
     "@types/semver": "^6.2.0",
@@ -57,8 +62,10 @@
     "@typescript-eslint/parser": "2.7.0",
     "eslint": "6.6.0",
     "hweeks-semantic-release-monorepo": "^1.0.0",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.1",
     "semantic-release": "15.13.31",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   }

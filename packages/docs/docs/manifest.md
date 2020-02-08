@@ -28,9 +28,9 @@ supports:
   docker: '19.03.1'
   docker-compose: '1.24.1'
 env:
-  - var: SOME_VAR
-    msg: What is your favorite color?
-    fallback: red
+  - name: SOME_VAR
+    message: What is your favorite color?
+    default: red
 ```
 ### about
 

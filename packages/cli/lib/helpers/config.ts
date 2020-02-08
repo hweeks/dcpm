@@ -2,7 +2,9 @@ import {promisify} from 'util'
 import fs from 'fs'
 import path from 'path'
 import os from 'os'
-export const cwd = process.cwd()
+
+// This env over ride is for testing, use this to point at your local manifest to vet a feature quickly
+export const cwd = process.env.CWD_OVERRIDE ? process.env.CWD_OVERRIDE : process.cwd()
 export const homedir = os.homedir()
 
 export const syncRead = promisify(fs.readFile)
