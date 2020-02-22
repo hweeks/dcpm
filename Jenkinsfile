@@ -7,7 +7,6 @@ pipeline {
     GH_TOKEN = credentials('github-token')
     DOCKER_USER = 'hams'
     DOCKER_PASS = credentials('docker-pass')
-    DO_TOKEN = credentials('DIGITALOCEAN_ACCESS_TOKEN')
   }
   stages {
     stage('prepare') {
@@ -96,7 +95,11 @@ pipeline {
     cleanup {
       deleteDir()
       script {
-        sh "docker system prune -a -f --volumes"
+        try {
+          sh "docker system prune -a -f --volumes"
+        } catch (error) {
+          echo "no need to panic, this is fine :thumbsup_all:"
+        }
       }
     }
   }
