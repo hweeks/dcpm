@@ -2,7 +2,7 @@
   "packages": [
     "backend/",
     "frontend/",
-    "cli/",
+    "packages/*",
     "docs/"
   ],
   "version": "0.0.0",
