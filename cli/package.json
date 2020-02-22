@@ -1,6 +1,6 @@
 {
   "name": "@dcpm/cli",
-  "version": "2.4.0",
+  "version": "2.5.1",
   "description": "The cli for dcpm",
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
@@ -22,7 +22,7 @@
     "access": "public"
   },
   "scripts": {
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "rm -rf dist/ && yarn build",
     "build": "tsc",
     "watch": "tsc -w",
     "watch:brk": "TS_NODE_FILES=true node --inspect-brk=127.0.0.1:9222 -r ts-node/register ./lib/index.ts",
