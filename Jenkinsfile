@@ -47,6 +47,13 @@ pipeline {
             """
           }
         }
+        stage('publish') {
+          steps {
+            sh """
+              yarn test:publish
+            """
+          }
+        }
       }
     }
     stage('releases') {

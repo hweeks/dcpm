@@ -12,10 +12,11 @@
     "lint": "lerna run lint --parallel",
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
+    "test:publish": "lerna run prepublishOnly --parallel",
     "release": "lerna run semantic-release --concurrency 1",
     "commit": "git-cz",
     "clean": "lerna exec -- rm -rf node_modules/",
-    "emulate:ci": "yarn clean && yarn run postinstall && yarn lint && yarn test && yarn release"
+    "emulate:ci": "yarn clean && yarn run postinstall && yarn lint && yarn test && yarn test:publish && yarn release"
   },
   "private": true,
   "dependencies": {
