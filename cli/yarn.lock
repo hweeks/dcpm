@@ -3110,19 +3110,6 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-hweeks-semantic-release-monorepo@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/hweeks-semantic-release-monorepo/-/hweeks-semantic-release-monorepo-1.0.0.tgz#f25471522495f29f2901f2a89091262db311c6a8"
-  integrity sha512-+nwGiU/uXH/3K5R0wVO+P9iYR9icSUiUooYGFYb8as+idgQ1W8TuYJ/VgtotfUFgrigShZSRIzmPhSKTJLqqaQ==
-  dependencies:
-    debug "^3.1.0"
-    execa "^0.8.0"
-    p-limit "^1.2.0"
-    pkg-up "^2.0.0"
-    ramda "^0.25.0"
-    read-pkg "^3.0.0"
-    semantic-release-plugin-decorators "^1.2.1"
-
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -6278,13 +6265,26 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
-semantic-release-plugin-decorators@^1.2.1:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/semantic-release-plugin-decorators/-/semantic-release-plugin-decorators-1.2.3.tgz#12dd1a9a70192a46240dab009de82dd3563c28ee"
-  integrity sha512-bEXRStCDiVIgFMiqvF2Chxt1JouFYGVQGA2F6i5GjI9Aq7hukdmkl8P2hB0HAzY7ezJB5lvdlJPcAf16wpfkcg==
+semantic-release-monorepo@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/semantic-release-monorepo/-/semantic-release-monorepo-7.0.0.tgz#d1252aa8d4cf88bde09c69a0db765f7a2ec1b247"
+  integrity sha512-fTSPemRnMgeBW6ClAHOiFucxsKYsCkoRCTgFeNAJiOTvq88wySqf/tS73gZW3KiS8dChUXkVVi1rUKOtZcKpTw==
+  dependencies:
+    debug "^3.1.0"
+    execa "^0.8.0"
+    p-limit "^1.2.0"
+    pkg-up "^2.0.0"
+    ramda "^0.25.0"
+    read-pkg "^3.0.0"
+    semantic-release-plugin-decorators "^2.1.0"
+
+semantic-release-plugin-decorators@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/semantic-release-plugin-decorators/-/semantic-release-plugin-decorators-2.1.0.tgz#549f4df27aed20683326c89bbb3cf16fd0a997d0"
+  integrity sha512-QnZ6qUUiVIiMSPh3a2c82Q+qJnSUkDghNOmABV8nfRYdYtJppO5yxXUAcfLVh0Ie/mKPo1YkY4Nl5CSWWTSBwA==
   dependencies:
     import-from "^2.1.0"
-    lodash "^4.17.4"
+    lodash "^4.17.15"
 
 semantic-release@15.13.31:
   version "15.13.31"
