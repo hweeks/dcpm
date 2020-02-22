@@ -11,6 +11,8 @@
   },
   "scripts": {
     "dev": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material",
-    "build": "docker run --rm --user \"$(id -u):$(id -g)\" -v ${PWD}:/docs squidfunk/mkdocs-material build && ./qd.sh"
+    "create": "docker build -t hams/dcpm-docs:latest .",
+    "run:build": "docker run -p 8000:8000 hams/dcpm-docs:latest",
+    "push": "docker push hams/dcpm-docs:latest"
   }
 }

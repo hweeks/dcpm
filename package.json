@@ -13,7 +13,9 @@
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
     "release": "lerna run semantic-release --concurrency 1",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "clean": "lerna exec -- rm -rf node_modules/",
+    "emulate:ci": "yarn clean && yarn run postinstall && yarn lint && yarn test && yarn release"
   },
   "private": true,
   "dependencies": {
