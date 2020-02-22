@@ -18,8 +18,8 @@ COPY . /app/be/
 RUN cd /app/be && yarn install --production=false && \
     yarn build && rm -rf node_modules && \
     yarn install && mkdir /app/be/logs &&\
-    addgroup --gid $GID --ingroup $GROUP &&\
-    adduser --uid $UID --gid $GROUP $USER &&\
+    groupadd --gid $GID $GROUP &&\
+    useradd --uid $UID --gid $GID $USER &&\
     cd /app/be &&\
     chown -R $USER:$GROUP /app/be &&\
     chmod -R 0744 /app/be
