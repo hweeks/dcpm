@@ -61,7 +61,8 @@ pipeline {
         stage('release') {
           steps {
             sh """
-              yarn release
+              cd cli
+              yarn semantic-release
             """
           }
         }
