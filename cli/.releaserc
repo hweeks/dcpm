@@ -1,0 +1,3 @@
+{
+  "tagFormat": "@dcpm/cli-v${version}"
+}

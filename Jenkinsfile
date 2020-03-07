@@ -47,7 +47,7 @@ pipeline {
             """
           }
         }
-        stage('publish') {
+        stage('publish test') {
           steps {
             sh """
               yarn test:publish
@@ -58,10 +58,11 @@ pipeline {
     }
     stage('releases') {
       parallel {
-        stage('release') {
+        stage('cli') {
           steps {
             sh """
-              yarn release
+              cd cli
+              yarn semantic-release
             """
           }
         }
