@@ -508,12 +508,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
-"@types/uuid@3.4.6":
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.6.tgz#d2c4c48eb85a757bf2927f75f939942d521e3016"
-  integrity sha512-cCdlC/1kGEZdEglzOieLDYBxHsvEOIg7kp/2FYyVR9Pxakq+Qf/inL3RKQ+PA8gOlI/NnL+fXmQH12nwcGzsHw==
-  dependencies:
-    "@types/node" "*"
+"@types/uuid@3.4.8":
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-3.4.8.tgz#4ba887fcef88bd9a7515ca2de336d691e3e18318"
+  integrity sha512-zHWce3allXWSmRx6/AGXKCtSOA7JjeWd2L3t4aHfysNk8mouQnWCocveaT7a4IEIlPVHp81jzlnknqTgCjCLXA==
 
 "@types/yargs-parser@*":
   version "13.1.0"
