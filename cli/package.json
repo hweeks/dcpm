@@ -57,7 +57,7 @@
     "@types/node": "12.12.30",
     "@types/node-fetch": "2.5.5",
     "@types/semver": "6.2.1",
-    "@types/unzipper": "0.10.2",
+    "@types/unzipper": "0.10.3",
     "@types/yargs": "13.0.8",
     "@typescript-eslint/eslint-plugin": "2.24.0",
     "@typescript-eslint/parser": "2.24.0",
