@@ -52,7 +52,7 @@
     "@types/archiver": "3.1.0",
     "@types/inquirer": "6.5.0",
     "@types/jest": "25.1.2",
-    "@types/js-yaml": "3.12.2",
+    "@types/js-yaml": "3.12.3",
     "@types/mustache": "4.0.1",
     "@types/node": "12.12.30",
     "@types/node-fetch": "2.5.5",
