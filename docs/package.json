@@ -10,7 +10,7 @@
     "access": "private"
   },
   "scripts": {
-    "dev": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material",
+    "dev": "docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:4.6.3",
     "create": "docker build -t hams/dcpm-docs:latest .",
     "run:build": "docker run -p 8000:8000 hams/dcpm-docs:latest",
     "push": "docker push hams/dcpm-docs:latest"
