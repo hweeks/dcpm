@@ -19,7 +19,7 @@ const handleEnter = (submitFunction : () => void, e : React.KeyboardEvent) => {
 
 const handleChange = (searchUpdate : (term: string) => void, e : React.ChangeEvent<HTMLInputElement>) => {
   const value = e && e.currentTarget && e.currentTarget.value
-  if (value) {
+  if (value || value === '') {
     searchUpdate(value)
   }
 }
