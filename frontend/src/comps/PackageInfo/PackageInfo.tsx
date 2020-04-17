@@ -3,7 +3,7 @@ import { SearchResult } from '../../reducers/search'
 import { PackageAbout, PackageWrapper, PackageStats, PackageInfoWrapper, PackageHeader, PackageTitle, PackageStat } from './styles'
 import { breaks } from '../../utils'
 
-export const PackageInfo = ({name, versions, requestedVersion, tags, about, owner}: SearchResult) => (
+export const PackageInfo = ({name, versions, requestedVersion, tags, about, owner, downloads}: SearchResult) => (
 <PackageWrapper>
   <PackageHeader>
     <PackageTitle>
@@ -16,6 +16,7 @@ export const PackageInfo = ({name, versions, requestedVersion, tags, about, owne
       <PackageStat>author: {owner}</PackageStat>
       <PackageStat>latest: {requestedVersion}</PackageStat>
       <PackageStat>versions: {versions?.join(', ')}</PackageStat>
+      <PackageStat>downloads: {downloads}</PackageStat>
       <PackageStat>tags: {tags?.join(', ')}</PackageStat>
     </PackageStats>
   </PackageInfoWrapper>
