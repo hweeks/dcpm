@@ -55,6 +55,8 @@ This is currently to do. I deploy to k8s on digital ocean through a helper repo 
 
 ## Deployments CLI
 
+> you must use the angular commit conventions for semantic release if you want a publish to work :P
+
 When a merge to master happens and all tests/lint passes we autodeploy to npm. Check for release tags in the repo,
 
 ## CI Checks

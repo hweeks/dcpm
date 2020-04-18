@@ -10,6 +10,7 @@
   "scripts": {
     "postinstall": "lerna exec --concurrency 1 yarn",
     "lint": "lerna run lint --parallel",
+    "lint:commit": "commitlint --from=HEAD~1",
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
     "test:publish": "lerna run prepublishOnly --parallel",
@@ -20,6 +21,8 @@
   },
   "private": true,
   "dependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "2.28.0",
     "@typescript-eslint/parser": "2.28.0",
     "commitizen": "4.0.4",
