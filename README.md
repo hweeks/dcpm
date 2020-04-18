@@ -32,6 +32,12 @@ That's cool, and I'm really glad you feel that way. Let's talk about how it work
 
 Every package has the same dev script in it, `yarn dev`. When run in any of our packages (backend, frontend, cli), it will start up nodemon and monitor for changes, which will auto trigger a reload. For the CLI or Frontend to work you should start the back end first.
 
+To start any dev process, simply:
+
+    yarn
+
+From the root, and everything else should be good to go!
+
 #### Example: Editing the Frontend
 
 You would:
