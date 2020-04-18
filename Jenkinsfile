@@ -26,7 +26,7 @@ pipeline {
             sh """
               sh ~/.bashrc
               export YARN_CACHE_FOLDER=$WORKSPACE/.cache
-              yarn
+              yarn --frozen-lockfile
             """
           }
         }
