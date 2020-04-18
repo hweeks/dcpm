@@ -68,6 +68,9 @@ pipeline {
           }
         }
         stage('backend') {
+          when {
+            changeset "backend/**/*"
+          }
           steps {
             sh """
               cd backend/
@@ -76,6 +79,9 @@ pipeline {
           }
         }
         stage('frontend') {
+          when {
+            changeset "frontend/**/*"
+          }
           steps {
             sh """
               cd frontend/
@@ -84,6 +90,9 @@ pipeline {
           }
         }
         stage('docs') {
+          when {
+            changeset "docs/**/*"
+          }
           steps {
             sh """
               cd docs/
