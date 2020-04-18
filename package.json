@@ -8,7 +8,7 @@
     "lerna": "3.20.2"
   },
   "scripts": {
-    "postinstall": "lerna exec yarn",
+    "postinstall": "lerna exec --concurrency 1 yarn",
     "lint": "lerna run lint --parallel",
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",
