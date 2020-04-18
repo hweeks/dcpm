@@ -64,6 +64,7 @@ When a merge to master happens and all tests/lint passes we autodeploy to npm. C
 The CI will:
 
   * install all packages
+  * check your commit aligns with expectations
   * lint and test them
   * deploy new docker builds for all packages
 

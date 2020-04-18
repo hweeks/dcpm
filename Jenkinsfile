@@ -37,6 +37,7 @@ pipeline {
         stage('lint') {
           steps {
             sh """
+              yarn lint:commit
               yarn lint
             """
           }
