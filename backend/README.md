@@ -33,34 +33,6 @@ This is built on:
   * mongoose
   * express
 
-## urls
+## API
 
-### /api/user/create
-
-TYPE: post
-
-PAYLOAD: {
-  username: string,
-  password: string,
-}
-
-RETURN: {
-  token: string,
-}
-
-### /api/user/login
-
-TYPE: post
-
-PAYLOAD: {
-  username: string,
-  password: string,
-}
-
-RETURN: {
-  token: string,
-}
-
-### /api/blob/add
-
-TYPE: post
+> todo: document
