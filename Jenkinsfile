@@ -25,7 +25,8 @@ pipeline {
           steps {
             sh """
               sh ~/.bashrc
-              yarn
+              export YARN_CACHE_FOLDER=$WORKSPACE/.cache
+              yarn --frozen-lockfile
             """
           }
         }
@@ -36,6 +37,7 @@ pipeline {
         stage('lint') {
           steps {
             sh """
+              yarn lint:commit
               yarn lint
             """
           }
@@ -59,6 +61,9 @@ pipeline {
     stage('releases') {
       parallel {
         stage('cli') {
+          when {
+            branch 'master'
+          }
           steps {
             sh """
               cd cli
@@ -67,6 +72,9 @@ pipeline {
           }
         }
         stage('backend') {
+          when {
+            changeset "backend/**/*"
+          }
           steps {
             sh """
               cd backend/
@@ -75,6 +83,9 @@ pipeline {
           }
         }
         stage('frontend') {
+          when {
+            changeset "frontend/**/*"
+          }
           steps {
             sh """
               cd frontend/
@@ -83,6 +94,9 @@ pipeline {
           }
         }
         stage('docs') {
+          when {
+            changeset "docs/**/*"
+          }
           steps {
             sh """
               cd docs/
