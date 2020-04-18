@@ -19,7 +19,7 @@ export const getVersionRange = (versions: string[], wantedVersion: string) => {
 const findBlob = async (req: Request, res: Response, next: NextFunction) => {
   const {searchTerm, searchVersion} = req.body
   const nameSearch = await Blob.find({
-    name: searchTerm,
+    name: { $regex: searchTerm, $options: "i" },
   })
   const tagSearch = await Blob.find({
     tags: searchTerm,
