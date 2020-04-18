@@ -60,6 +60,9 @@ pipeline {
     stage('releases') {
       parallel {
         stage('cli') {
+          when {
+            branch 'master'
+          }
           steps {
             sh """
               cd cli
