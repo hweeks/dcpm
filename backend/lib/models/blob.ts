@@ -34,7 +34,11 @@ export const BlobSchema = new Schema({
       ref: 'User'
     }
   ],
-  tags: [String]
+  tags: [String],
+  downloads: {
+    type: Number,
+    default: 0,
+  }
 });
 
 export interface VersionConfig {
@@ -49,7 +53,8 @@ export interface IBlobPayload {
   versions: VersionConfig[],
   scm: string,
   authors: Types.ObjectId[],
-  tags: string[]
+  tags: string[],
+  downloads?: number
 }
 
 export interface IBlobDoc extends Document {
@@ -59,7 +64,8 @@ export interface IBlobDoc extends Document {
   versions: VersionConfig[],
   scm: string,
   authors: Types.ObjectId[],
-  tags: string[]
+  tags: string[],
+  downloads?: number
 }
 
 export const Blob = model<IBlobDoc, Model<IBlobDoc>>("Blob", BlobSchema);
