@@ -35,6 +35,9 @@ const buildAndReturnApp = async (app : Application) => {
   app.get('/health', (req: Request, res: Response) => {
     res.send('ok')
   })
+  app.get('/', (req: Request, res: Response) => {
+    res.redirect('https://app.dcpm.dev')
+  })
   app.use('*', (error: Error, req: Request, res: Response, next: NextFunction) => {
     const {message} = error
     logger.error({err: error, req, message: 'Thrown in default error catcher'})
