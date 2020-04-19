@@ -7,6 +7,7 @@ pipeline {
     GH_TOKEN = credentials('github-token')
     DOCKER_USER = 'hams'
     DOCKER_PASS = credentials('docker-pass')
+    DEPLOY_TOKEN = credentials('dcpm-do-token')
   }
   stages {
     stage('prepare') {
@@ -59,11 +60,11 @@ pipeline {
       }
     }
     stage('releases') {
+      when {
+        branch 'master'
+      }
       parallel {
         stage('cli') {
-          when {
-            branch 'master'
-          }
           steps {
             sh """
               cd cli
@@ -79,6 +80,7 @@ pipeline {
             sh """
               cd backend/
               ./docker-build-n-tag.sh
+              curl https://ci.dcpm.dev/job/dcpm-deployments/job/do-be/buildWithParameters?token=$DEPLOY_TOKEN&LATEST_DOCS_VERSION=$GIT_COMMIT
             """
           }
         }
@@ -90,6 +92,7 @@ pipeline {
             sh """
               cd frontend/
               ./docker-build-n-tag.sh
+              curl https://ci.dcpm.dev/job/dcpm-deployments/job/do-fe/buildWithParameters?token=$DEPLOY_TOKEN&LATEST_DOCS_VERSION=$GIT_COMMIT
             """
           }
         }
@@ -101,6 +104,7 @@ pipeline {
             sh """
               cd docs/
               ./docker-build-n-tag.sh
+              curl https://ci.dcpm.dev/job/dcpm-deployments/job/do-docs/buildWithParameters?token=$DEPLOY_TOKEN&LATEST_DOCS_VERSION=$GIT_COMMIT
             """
           }
         }
