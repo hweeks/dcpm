@@ -32,6 +32,9 @@ const buildAndReturnApp = async (app : Application) => {
   logger.debug('blob routes added')
   app.use('/', SearchRouter)
   logger.debug('search routes added')
+  app.get('/health', (req: Request, res: Response) => {
+    res.send('ok')
+  })
   app.use('*', (error: Error, req: Request, res: Response, next: NextFunction) => {
     const {message} = error
     logger.error({err: error, req, message: 'Thrown in default error catcher'})
