@@ -30,3 +30,7 @@ Conceptually this is a simple way to share simple configs. This is far less feat
 This should serve as an easy way to share configs you've built. Do you want to host your own custom stack but think other would want in? Do you want to containerize some self hosted app and be able to share just the config for it? Are you tired of searching for docker-compose files built by someone that has all the services you want pre-baked in?
 
 I'm trying to solve the simple home enthusiast use case here. This is not and will not ever be something built for production use. This should be for easy local dev and simple home services. If you want productions stacks please check out helm and kubernetes.
+
+## Contributing
+
+I've aimed to make contributions as simple as possible, check out the README in [the root](https://github.com/hweeks/dcpm) for instructions to setup your local and contribute. To keep it simple, fork dcpm, do your work, create a PR. If you pass CI you'll more than likely get merged in.
