@@ -197,9 +197,12 @@ export const getBlob = async (req: Request, res: Response, next: NextFunction) =
   const readStream = gfs.createReadStream({
     _id: versionConfig.file.toString()
   }).on('error', () => {
-    const errorOut = new Error('Looks like we just can\'t handle that sort of request. Try again?')
+    const errorOut = new Error("Well crap, I just can seem to make a file out of this blob")
     next(errorOut)
-  }).on('close', () => Blob.updateOne({ _id: blobObject._id }, { $inc: { downloads: 1 } }))
+  })
+  await foundBlob?.update({
+    downloads: (foundBlob.downloads || 0) + 1
+  })
   res.set('Content-Type', 'application/zip')
   readStream.pipe(res)
 }
