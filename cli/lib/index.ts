@@ -3,7 +3,7 @@
 import yargs from "yargs";
 import semver from "semver"
 import inquirer from "inquirer";
-import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand, executeCommand, runSetup} from './actions'
+import {getCommand, publishCommand, loginOrCreateCommand, modifyPermsCommand, executeCommand, runSearch, runSetup} from './actions'
 
 yargs
   .command(
@@ -72,6 +72,14 @@ yargs
     {},
     function ({script}) {
       executeCommand(script as string)
+    }
+  )
+  .command(
+    'search [query]',
+    'search packages in the registry',
+    {},
+    function ({query}) {
+      runSearch(query)
     }
   )
   .command(
