@@ -199,7 +199,7 @@ export const getBlob = async (req: Request, res: Response, next: NextFunction) =
   }).on('error', () => {
     const errorOut = new Error('Looks like we just can\'t handle that sort of request. Try again?')
     next(errorOut)
-  })
+  }).on('close', () => Blob.updateOne({ _id: blobObject._id }, { $inc: { downloads: 1 } }))
   res.set('Content-Type', 'application/zip')
   readStream.pipe(res)
 }

@@ -7,6 +7,7 @@ export interface SearchResult {
   tags: string[]
   about: string
   owner: string
+  downloads: number
 }
 
 export interface SearchState {
