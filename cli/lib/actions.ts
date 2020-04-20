@@ -1,7 +1,8 @@
 import { createReadStream, readFile, statSync, writeFile} from "fs";
 import path from 'path'
 import chalk from "chalk";
-import { Blob, User } from "./api";
+import Table from 'cli-table'
+import { Blob, User, Search } from "./api";
 import { DcpmConfig, cwd } from "./helpers/config";
 import { tmpDir, decompressToFolder, compressFolder } from "./helpers/archive";
 import { getManifest, runConfigBuilder } from "./helpers/manifest";
@@ -119,6 +120,34 @@ export const executeCommand = async (script: string) => {
   } catch (error) {
     const {message} = error
     warn(message || 'We blew up trying to run a script, but I have no idea why.')
+  }
+}
+
+export const runSearch = async (query: any) => {
+  const currentConfig = await BuiltConfig.getConfig()
+  const blobUrl = currentConfig.blobs || 'https://blobs.dcpm.dev'
+  try {
+    const res = await Search.search(query || '', '', blobUrl)
+
+    if (res.length) {
+      const table = new Table({
+        head: ['Name', 'Version', 'Tags', 'Owner'],
+        colWidths: [40, 10, 40, 10],
+        style: {
+          compact: true
+        }
+      });
+
+      table.push(
+        ...res.map(item => ([item.name, item.requestedVersion, item.tags.join(' '), item.owner]))
+      );
+
+      return console.log(table.toString());
+    }
+    return warn(`You searched for ${query}, but that's something I can't find...`)
+  } catch (error) {
+    const {message} = error
+    warn(message || 'We blew up trying to run search, but I have no idea why.')
   }
 }
 
