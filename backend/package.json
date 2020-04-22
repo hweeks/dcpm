@@ -35,7 +35,7 @@
     "express": "^4.17.1",
     "gridfs-stream": "^1.1.1",
     "helmet": "^3.21.2",
-    "jws": "^3.2.2",
+    "jws": "^4.0.0",
     "mongodb": "3.5.6",
     "mongoose": "^5.7.10",
     "multer": "^1.4.2",
