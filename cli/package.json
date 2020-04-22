@@ -34,7 +34,7 @@
     "test:debug": "node --inspect-brk $(npm bin)/jest --watchAll --no-cache --runInBand"
   },
   "dependencies": {
-    "archiver": "^3.1.1",
+    "archiver": "^4.0.0",
     "chalk": "^3.0.0",
     "cli-table": "^0.3.1",
     "form-data": "^3.0.0",
