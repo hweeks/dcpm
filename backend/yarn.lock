@@ -723,10 +723,10 @@
   dependencies:
     get-port "*"
 
-"@types/gridfs-stream@0.5.32":
-  version "0.5.32"
-  resolved "https://registry.yarnpkg.com/@types/gridfs-stream/-/gridfs-stream-0.5.32.tgz#1db4a238a09aaf5a733e04660cba4ca2db2985b7"
-  integrity sha512-0YcZDi2KC0NhXLYJywSNduJ7W8xnvsknpc6/C2apL5II/7lo8gojWuUI8tC60meAQyfSXaD9wDfw3jQMThtATg==
+"@types/gridfs-stream@0.5.33":
+  version "0.5.33"
+  resolved "https://registry.yarnpkg.com/@types/gridfs-stream/-/gridfs-stream-0.5.33.tgz#f62a4681b479f64ecb86fadf66c73c66e5e2102d"
+  integrity sha512-3E8QdXJ0jZ6hgGzBAnQ4yfZ4GPcxttTAIR8ZiU2phl4zAC74KpYuOqfbef/IY9sDfAbRhd8voHTkuO0UpByFPA==
   dependencies:
     "@types/mongodb" "*"
     "@types/node" "*"
