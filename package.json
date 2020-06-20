@@ -10,6 +10,7 @@
   "scripts": {
     "postinstall": "lerna exec --concurrency 1 yarn",
     "lint": "lerna run lint --parallel",
+    "dev": "lerna run dev --parallel",
     "lint:commit": "commitlint --from=HEAD~1",
     "build": "lerna run build --parallel",
     "test": "lerna run test --parallel",

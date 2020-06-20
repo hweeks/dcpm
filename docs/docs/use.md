@@ -32,3 +32,7 @@ Use: `dcpm remove-user [user] [name]`
 
 This will allow you to remove a user from the currently authorized ones.
 
+## <any command>
+
+Equivalent to running `docker-compose [any command]`. It will warn if you're doing something docker-compose doesn't support, but then try anyways.
+
