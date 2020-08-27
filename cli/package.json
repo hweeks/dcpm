@@ -53,7 +53,7 @@
     "@semantic-release/npm": "7.0.5",
     "@types/archiver": "3.1.0",
     "@types/inquirer": "6.5.0",
-    "@types/jest": "25.2.1",
+    "@types/jest": "25.2.3",
     "@types/js-yaml": "3.12.3",
     "@types/mustache": "4.0.1",
     "@types/node": "12.12.36",
