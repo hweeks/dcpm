@@ -723,12 +723,12 @@
   dependencies:
     get-port "*"
 
-"@types/gridfs-stream@0.5.32":
-  version "0.5.32"
-  resolved "https://registry.yarnpkg.com/@types/gridfs-stream/-/gridfs-stream-0.5.32.tgz#1db4a238a09aaf5a733e04660cba4ca2db2985b7"
-  integrity sha512-0YcZDi2KC0NhXLYJywSNduJ7W8xnvsknpc6/C2apL5II/7lo8gojWuUI8tC60meAQyfSXaD9wDfw3jQMThtATg==
+"@types/gridfs-stream@0.5.35":
+  version "0.5.35"
+  resolved "https://registry.yarnpkg.com/@types/gridfs-stream/-/gridfs-stream-0.5.35.tgz#17a1723c03f5dee00b7e42afbf9e8fb4ce7b553d"
+  integrity sha512-hdolPqhgT/w/wmz1FjGH4hUzZ01UoO+2m5NPptrEA+0tQzX4/xqqIapc/XUb+yHaILcI7XtinhOTtPmiQB1Fgw==
   dependencies:
-    "@types/mongodb" "*"
+    "@types/mongodb" "^3.6.20"
     "@types/node" "*"
 
 "@types/helmet@0.0.45":
@@ -804,6 +804,14 @@
   version "3.3.14"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.3.14.tgz#5b44bf16b5856eb829545edcc2c4d7726b44b864"
   integrity sha512-Ie0Fjoifm/TPY2rNOgixzhNSjDgxgR0dMKQk9XqUXHnkfuw26SpbMXjwECfxSnEdG1bH6bIlpLIK7HvGHQhzqg==
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongodb@^3.6.20":
+  version "3.6.20"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.20.tgz#b7c5c580644f6364002b649af1c06c3c0454e1d2"
+  integrity sha512-WcdpPJCakFzcWWD9juKoZbRtQxKIMYF/JIAM4JrNHrMcnJL6/a2NWjXxW7fo9hxboxxkg+icff8d7+WIEvKgYQ==
   dependencies:
     "@types/bson" "*"
     "@types/node" "*"

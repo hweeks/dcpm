@@ -48,7 +48,7 @@
     "@types/bcrypt": "3.0.0",
     "@types/bunyan": "1.8.6",
     "@types/express": "4.17.4",
-    "@types/gridfs-stream": "0.5.32",
+    "@types/gridfs-stream": "0.5.35",
     "@types/helmet": "0.0.45",
     "@types/jest": "25.2.1",
     "@types/jws": "3.2.1",
