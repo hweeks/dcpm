@@ -5,13 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "yarn workspaces foreach run lint",
+    "lint": "yarn workspaces foreach -piv -j 32 run lint",
     "dev": "yarn workspaces foreach -piv -j 32 run dev",
     "lint:commit": "commitlint --from=HEAD~1",
-    "build": "yarn workspaces foreach build",
-    "test": "yarn workspaces foreach test",
-    "test:publish": "yarn workspaces foreach prepublishOnly",
-    "release": "yarn workspaces foreach semantic-release --concurrency 1",
+    "build": "yarn workspaces foreach -piv -j 32 run build",
+    "test": "yarn workspaces foreach -piv -j 32 run test",
+    "test:publish": "yarn workspaces foreach -piv -j 32 run prepublishOnly",
+    "release": "yarn workspaces foreach -piv -j 32 run semantic-release --concurrency 1",
     "commit": "git-cz",
     "clean": "lerna exec -- rm -rf node_modules/",
     "emulate:ci": "yarn clean && yarn run postinstall && yarn lint && yarn test && yarn test:publish && yarn release"
@@ -27,12 +27,16 @@
     "eslint": "6.8.0",
     "eslint-plugin-react": "7.19.0",
     "node-gyp": "8.4.1",
-    "typescript": "3.8.3"
+    "prettier": "2.5.1",
+    "typescript": "3.9.10"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "resolutions": {
+    "@types/node": "12.12.36"
   },
   "packageManager": "yarn@3.1.0",
   "workspaces": [

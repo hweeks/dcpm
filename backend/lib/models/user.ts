@@ -25,7 +25,7 @@ export interface IUserDoc extends Document {
   blobs?: string[];
 }
 
-UserSchema.statics.authenticate = async (username: string, password: string) => {
+export const authenticate = async function(username: string, password: string) {
   let foundUser : IUserDoc
   foundUser = await User.findOne({username}) as IUserDoc
   if (!foundUser) {
@@ -36,7 +36,6 @@ UserSchema.statics.authenticate = async (username: string, password: string) => 
     throw new Error('Looks like you may have forgotten your password...')
   }
   return foundUser
-
 };
 
 UserSchema.pre("save", function (this: IUserDoc, next : HookNextFunction) {

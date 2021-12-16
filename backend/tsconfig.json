@@ -7,11 +7,9 @@
     "rootDir": "./lib",
     "strict": true,
     "typeRoots": ["./types", "./node_modules/@types"],
+    "types": ["@types/jest", "@types/node"],
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "exclude": [
-    "setup",
-    "__tests__"
-  ]
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true
+  }
 }

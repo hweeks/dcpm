@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
 module.exports = {
   mode: 'development',
@@ -24,11 +25,6 @@ module.exports = {
             loader: "ts-loader"
           }
         ]
-      },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader"
       }
     ]
   },
@@ -36,7 +32,15 @@ module.exports = {
     alias: {
       'react-dom': '@hot-loader/react-dom'
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    plugins: [
+      PnpWebpackPlugin,
+    ],
+  },
+  resolveLoader: {
+    plugins: [
+      PnpWebpackPlugin.moduleLoader(module),
+    ],
   },
   optimization: {
     splitChunks: {

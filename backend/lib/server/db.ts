@@ -4,19 +4,22 @@ import multer from 'multer'
 import GridFsStorage from 'multer-gridfs-storage'
 import Grid from 'gridfs-stream'
 import { logger } from "./log";
+import { is_local_dev, is_test } from "../constants";
+import { gimme_dat_local_db_uri } from "./db-local";
 
-const connectOpts : mongoose.ConnectionOptions = { useNewUrlParser: true, keepAlive: true, connectTimeoutMS: 30000 }
+const connectOpts : mongoose.ConnectionOptions = { useNewUrlParser: true }
 
-let url = process.env.MONGO_URL || "mongodb://mongo:27017/dcpm"
+let url : string = process.env.MONGO_URI || ""
 let connection : typeof mongoose
 let storage : GridFsStorage = new GridFsStorage({ url });
-let fileMiddleware : multer.Instance = multer({storage});
+let fileMiddleware : multer.Multer = multer({storage});
 let bucket : GridFSBucket
 let gfs : Grid.Grid
 
 export const startMongoose = async (urlOverride?: string) => {
+  if (is_local_dev || is_test) url = await gimme_dat_local_db_uri()
   logger.debug(`Connecting to mongo on ${url}`)
-  connection = await mongoose.connect(urlOverride? urlOverride : url, connectOpts);
+  connection = await mongoose.connect(urlOverride ?? url, connectOpts);
   storage = new GridFsStorage({ db: connection });
   fileMiddleware = multer({storage})
   bucket = new GridFSBucket(connection.connection.db, { bucketName: 'blob' });

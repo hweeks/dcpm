@@ -1,6 +1,6 @@
 import { Router, NextFunction, Response, Request } from "express";
 import jws from 'jws';
-import { User, UserSchema, IUserDoc } from "../models/user";
+import { User, authenticate } from "../models/user";
 
 const router = Router();
 
@@ -13,8 +13,7 @@ export const createToken = async (password: string) => jws.sign({
 export const userLogin = async (req: Request, res: Response, next: NextFunction) => {
   const {username, password} = req.body
   try {
-    await UserSchema.statics.authenticate(username, password)
-    const userFound = await User.findOne({username})
+    const userFound = await authenticate(username, password)
     const token = await createToken(userFound?.id || '')
     res.send({token})
   } catch (error) {

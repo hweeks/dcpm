@@ -104,7 +104,7 @@ const decodeToken = (token: string) => {
 export const addBlob = async (req: Request, res: Response, next: NextFunction) => {
   const {token} = req.headers
   let {name, author, about, version, scm, tags} = req.body
-  const file = req.file.id
+  const file = req?.file?.id
   let sanitizedPayload
   try {
     sanitizedPayload = parseInput({name, author, about, version, scm, token, tags: tags.split(',')})
@@ -158,7 +158,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
       next(new Error(`It looks like ${username} is already here. I'm not going to do anything.`))
       return
     }
-    currentBlob.authors.push(toBeChangedUser.id)
+    currentBlob.authors.push(toBeChangedUser._id)
   } else if (action === 'remove') {
     currentBlob.authors = currentBlob.authors.filter((user: ObjectID) => user.toString() !== toBeChangedUser.id)
   } else {
@@ -181,13 +181,13 @@ export const getBlob = async (req: Request, res: Response, next: NextFunction) =
   const blobObject = foundBlob?.toObject()
   let foundVersion = ''
   const requestedVersion = version.replace('.zip', '')
-  const flatVersions : string[] = blobObject.versions.map((singleVersion : VersionConfig) => singleVersion.version) || ['']
+  const flatVersions : string[] = blobObject?.versions?.map((singleVersion : VersionConfig) => singleVersion.version) || ['']
   if (version.includes('latest')) {
     foundVersion = getLatest(flatVersions)
   } else {
     foundVersion = getVersionRange(flatVersions, requestedVersion)
   }
-  const versionConfig = blobObject.versions.find((currentVersion: VersionConfig) => {
+  const versionConfig = blobObject?.versions?.find((currentVersion: VersionConfig) => {
     return currentVersion.version === foundVersion
   })
   if (!versionConfig) {

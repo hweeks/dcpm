@@ -175,9 +175,7 @@ export const buildAdditionalConfigs = async () => {
     if (manifestInfo.extraConfigs) {
       const allConfigsToBuild = manifestInfo.extraConfigs.map(async configToBuild => {
         const answers = await runConfigBuilder(configToBuild.questions)
-        let answerObject = [...Object.entries(answers)]
         const fileTemplate = await asyncRead(path.resolve(cwd, configToBuild.template), 'utf8')
-        debugger
         const builtFile = Mustache.render(fileTemplate, answers)
         await asyncWrite(path.resolve(cwd, configToBuild.output), builtFile)
         log(`Alright, we built your file and plopped it here: ${configToBuild.output}`)
