@@ -5,7 +5,7 @@
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/server/index.js",
+  "main": "lib/startup.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -19,13 +19,12 @@
   "scripts": {
     "test": "jest --maxWorkers=3 --forceExit",
     "build": "rimraf dist && tsc --project tsconfig-build.json",
-    "watch": "TS_NODE_FILES=true node --inspect=0.0.0.0 -r ts-node/register lib/server/index.ts",
-    "watch:brk": "TS_NODE_FILES=true node --inspect-brk=0.0.0.0 -r ts-node/register lib/server/index.ts",
-    "dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d",
+    "watch": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect=0.0.0.0 -r ts-node/register lib/startup.ts",
+    "watch:brk": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect-brk=0.0.0.0 -r ts-node/register lib/startup.ts",
     "dev:down": "docker-compose stop",
     "dev:logs": "docker-compose logs --tail 100 -f backend",
     "dev:sh": "docker-compose exec backend sh",
-    "dev:start": "nodemon",
+    "dev": "nodemon",
     "lint": "eslint lib/**/*.ts"
   },
   "dependencies": {

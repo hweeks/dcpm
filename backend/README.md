@@ -39,6 +39,9 @@ This is built on:
 
 ## TODO
 
+1. fix tests
+1. fix build
+1. fix types
 1. move to mongodb-memory-server for local dev
 1. move to esbuild register
 1. clean nodemon usage
