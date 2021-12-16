@@ -10,16 +10,16 @@ This is meant to be run using our docker container, or via `dcpm` itself.
 
 The backend is going to be very basic. It will be two things:
 
-  * express
-  * mongodb
+- express
+- mongodb
 
 ## Local Development
 
 For local dev we'd recommend:
 
-  * REST client
-  * chrome debug tools
-  * docker and docker-compose
+- REST client
+- chrome debug tools
+- docker and docker-compose
 
 Run: `yarn dev` to get a locally running stack on `localhost:3000`
 
@@ -29,9 +29,9 @@ Hit the endpoint with your REST client and attach chrome's debugger tools from `
 
 This is built on:
 
-  * typescript
-  * mongoose
-  * express
+- typescript
+- mongoose
+- express
 
 ## API
 

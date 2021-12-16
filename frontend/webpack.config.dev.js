@@ -1,19 +1,19 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: {
     main: "./src/index.tsx",
-    vendor: ['react', 'react-dom', 'redux'],
+    vendor: ["react", "react-dom", "redux"],
   },
   devtool: "eval-source-map",
   output: {
     path: `${__dirname}/static`,
-    filename: '[name].bundle.js',
-    publicPath: '/'
+    filename: "[name].bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -22,62 +22,58 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader"
-          }
-        ]
-      }
-    ]
+            loader: "ts-loader",
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     alias: {
-      'react-dom': '@hot-loader/react-dom'
+      "react-dom": "@hot-loader/react-dom",
     },
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    plugins: [
-      PnpWebpackPlugin,
-    ],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    plugins: [PnpWebpackPlugin],
   },
   resolveLoader: {
-    plugins: [
-      PnpWebpackPlugin.moduleLoader(module),
-    ],
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: "all",
       minSize: 30000,
       maxSize: 0,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      automaticNameDelimiter: '-',
+      automaticNameDelimiter: "-",
       name: true,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10,
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   devServer: {
     hot: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:3000'
-    }
+      "/api": "http://localhost:3000",
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'dcpm',
-      template: './static/index-template.html'
+      title: "dcpm",
+      template: "./static/index-template.html",
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  ]
-}
+    new webpack.NoEmitOnErrorsPlugin(),
+  ],
+};
