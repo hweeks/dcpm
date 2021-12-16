@@ -5717,7 +5717,7 @@ __metadata:
     cz-conventional-changelog: 3.1.0
     eslint: 6.8.0
     eslint-plugin-react: 7.19.0
-    node-gyp: ^8.4.1
+    node-gyp: 8.4.1
     typescript: 3.8.3
   languageName: unknown
   linkType: soft
@@ -12855,7 +12855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:*, node-gyp@npm:^8.2.0, node-gyp@npm:^8.4.1, node-gyp@npm:latest":
+"node-gyp@npm:*, node-gyp@npm:8.4.1, node-gyp@npm:^8.2.0, node-gyp@npm:latest":
   version: 8.4.1
   resolution: "node-gyp@npm:8.4.1"
   dependencies:

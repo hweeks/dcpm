@@ -5,6 +5,7 @@ dist
 *.log
 # yarn 3 stuff
 
+.pnp.*
 .yarn/*
 !.yarn/cache
 !.yarn/patches
