@@ -6,19 +6,21 @@
   "homepage": "",
   "license": "ISC",
   "main": "lib/startup.js",
+  "typings": "dist/constants.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "jest --maxWorkers=3 --forceExit",
-    "build": "rimraf dist && tsc --project tsconfig-build.json",
+    "build-tool": "rimraf dist && tsc --project tsconfig-build.json",
     "watch": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect=0.0.0.0 -r ts-node/register lib/startup.ts",
     "watch:brk": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect-brk=0.0.0.0 -r ts-node/register lib/startup.ts",
     "dev:down": "docker-compose stop",

@@ -9,6 +9,7 @@
     "dev": "yarn workspaces foreach -piv -j 32 run dev",
     "lint:commit": "commitlint --from=HEAD~1",
     "build": "yarn workspaces foreach -piv -j 32 run build",
+    "build:tools": "yarn workspaces foreach -piv -j 32 --topological-dev run build-tool",
     "test": "yarn workspaces foreach -piv -j 32 run test",
     "test:publish": "yarn workspaces foreach -piv -j 32 run prepublishOnly",
     "release": "yarn workspaces foreach -v run semantic-release",

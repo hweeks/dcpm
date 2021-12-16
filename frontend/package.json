@@ -52,6 +52,7 @@
     "webpack-dev-server": "3.10.3"
   },
   "dependencies": {
+    "@dcpm/backend": "workspace:*",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
     "http-proxy-middleware": "^0.21.0",
