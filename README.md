@@ -69,3 +69,10 @@ The CI will:
   * deploy new docker builds for all packages
 
 Please make sure your commit passes :)
+
+## TODO
+
+1. update to y3rn
+1. remove lerna
+1. update CI/CD
+1. update and add deployment tooling

@@ -3,3 +3,12 @@ docs/site
 dist
 *.DS_Store
 *.log
+# yarn 3 stuff
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

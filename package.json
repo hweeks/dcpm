@@ -4,17 +4,14 @@
   "description": "the monorepo for the dcpm cli and server",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "lerna": "3.20.2"
-  },
   "scripts": {
-    "postinstall": "lerna exec --concurrency 1 yarn",
-    "lint": "lerna run lint --parallel",
+    "lint": "yarn workspaces foreach run lint",
+    "dev": "yarn workspaces foreach -piv -j 32 run dev",
     "lint:commit": "commitlint --from=HEAD~1",
-    "build": "lerna run build --parallel",
-    "test": "lerna run test --parallel",
-    "test:publish": "lerna run prepublishOnly --parallel",
-    "release": "lerna run semantic-release --concurrency 1",
+    "build": "yarn workspaces foreach build",
+    "test": "yarn workspaces foreach test",
+    "test:publish": "yarn workspaces foreach prepublishOnly",
+    "release": "yarn workspaces foreach semantic-release --concurrency 1",
     "commit": "git-cz",
     "clean": "lerna exec -- rm -rf node_modules/",
     "emulate:ci": "yarn clean && yarn run postinstall && yarn lint && yarn test && yarn test:publish && yarn release"
@@ -29,11 +26,19 @@
     "cz-conventional-changelog": "3.1.0",
     "eslint": "6.8.0",
     "eslint-plugin-react": "7.19.0",
+    "node-gyp": "8.4.1",
     "typescript": "3.8.3"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "yarn@3.1.0",
+  "workspaces": [
+    "backend",
+    "cli",
+    "docs",
+    "frontend"
+  ]
 }

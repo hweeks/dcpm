@@ -36,3 +36,11 @@ This is built on:
 ## API
 
 > todo: document
+
+## TODO
+
+1. move to mongodb-memory-server for local dev
+1. move to esbuild register
+1. clean nodemon usage
+1. create core route/payload enums
+1. fix things i learned lol
