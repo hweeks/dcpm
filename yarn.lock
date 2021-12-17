@@ -648,7 +648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dcpm/backend@workspace:backend":
+"@dcpm/backend@workspace:*, @dcpm/backend@workspace:backend":
   version: 0.0.0-use.local
   resolution: "@dcpm/backend@workspace:backend"
   dependencies:
@@ -747,6 +747,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@dcpm/frontend@workspace:frontend"
   dependencies:
+    "@dcpm/backend": "workspace:*"
     "@hot-loader/react-dom": 16.13.0
     "@semantic-release/git": 7.0.18
     "@semantic-release/npm": 5.3.5
