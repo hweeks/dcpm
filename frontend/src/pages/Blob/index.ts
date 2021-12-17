@@ -1,1 +1,1 @@
-export * from './Blob'
+export * from "./Blob";
