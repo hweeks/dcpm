@@ -30,6 +30,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     plugins: [PnpWebpackPlugin],
+    fallback: { "path": require.resolve("path-browserify") }
   },
   resolveLoader: {
     plugins: [PnpWebpackPlugin.moduleLoader(module)],
@@ -43,7 +44,7 @@ module.exports = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: "-",
-      name: true,
+      name: 'dcpm',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
