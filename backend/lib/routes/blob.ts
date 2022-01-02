@@ -138,7 +138,7 @@ export const addBlob = async (
   next: NextFunction
 ) => {
   const { token } = req.headers;
-  let { name, author, about, version, scm, tags } = req.body;
+  const { name, author, about, version, scm, tags } = req.body;
   const file = req?.file?.id;
   let sanitizedPayload;
   try {
@@ -185,7 +185,7 @@ export const updateUser = async (
 ) => {
   const { token } = req.headers;
   const safeToken = Array.isArray(token) ? token[0] : token || "";
-  let { username, action, name } = req.body;
+  const { username, action, name } = req.body;
   const tokenParsed = decodeToken(safeToken);
   const foundUser = await User.findById(tokenParsed.payload);
   if (!foundUser) {

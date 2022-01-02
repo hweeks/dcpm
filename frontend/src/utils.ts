@@ -2,13 +2,12 @@ type TEat = (term: string) => ({ type }: { type: string }) => string;
 
 export function breaks() {
   const parser = this.Parser;
-  let tokenizers;
 
   if (!isRemarkParser(parser)) {
     throw new Error("Missing parser to attach `remark-breaks` to");
   }
 
-  tokenizers = parser.prototype.inlineTokenizers;
+  const tokenizers = parser.prototype.inlineTokenizers;
 
   tokenizeBreak.locator = tokenizers.break.locator;
 

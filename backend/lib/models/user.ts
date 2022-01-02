@@ -29,8 +29,7 @@ export const authenticate = async function (
   username: string,
   password: string
 ) {
-  let foundUser: IUserDoc;
-  foundUser = (await User.findOne({ username })) as IUserDoc;
+  const foundUser = (await User.findOne({ username })) as IUserDoc;
   if (!foundUser) {
     throw new Error(`There's no one by the handle ${username} here. Odd...`);
   }
