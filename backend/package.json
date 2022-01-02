@@ -5,7 +5,8 @@
   "author": "Harris Weeks <root@hweeks.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/startup.js",
+  "main": "dist/startup.js",
+  "module": "lib/startup.ts",
   "typings": "dist/constants.d.ts",
   "directories": {
     "lib": "lib",
@@ -23,9 +24,6 @@
     "build-tool": "rimraf dist && tsc --project tsconfig-build.json",
     "watch": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect=0.0.0.0 -r ts-node/register lib/startup.ts",
     "watch:brk": "cross-env TS_NODE_FILES=true NODE_ENV=local node --inspect-brk=0.0.0.0 -r ts-node/register lib/startup.ts",
-    "dev:down": "docker-compose stop",
-    "dev:logs": "docker-compose logs --tail 100 -f backend",
-    "dev:sh": "docker-compose exec backend sh",
     "dev": "nodemon",
     "lint": "eslint lib/**/*.ts"
   },
@@ -44,21 +42,22 @@
     "multer": "1.4.2",
     "multer-gridfs-storage": "4.0.1",
     "semver": "6.3.0",
-    "uuid": "3.3.3"
+    "uuid": "3.4.0"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "2.1.1",
-    "@types/bcrypt": "3.0.0",
+    "@types/bcrypt": "3.0.1",
     "@types/body-parser": "1.19.2",
-    "@types/bunyan": "1.8.6",
-    "@types/express": "4.17.4",
-    "@types/gridfs-stream": "0.5.32",
+    "@types/bunyan": "1.8.8",
+    "@types/express": "4.17.13",
+    "@types/gridfs-stream": "0.5.35",
     "@types/helmet": "0.0.45",
-    "@types/jest": "^27.0.3",
+    "@types/jest": "27.4.0",
     "@types/jws": "3.2.1",
     "@types/mongodb": "3.6.20",
     "@types/multer": "1.4.7",
-    "@types/node": "12.20.37",
+    "@types/multer-gridfs-storage": "4.0.4",
+    "@types/node": "17.0.6",
     "@types/semver": "6.2.1",
     "@types/uuid": "3.4.8",
     "@typescript-eslint/eslint-plugin": "2.28.0",
@@ -68,8 +67,8 @@
     "mongodb-memory-server": "8.0.4",
     "nodemon": "2.0.15",
     "rimraf": "3.0.2",
-    "ts-jest": "27.1.1",
-    "ts-node": "8.8.2",
-    "typescript": "3.9.10"
+    "ts-jest": "27.1.2",
+    "ts-node": "10.4.0",
+    "typescript": "^4.5.4"
   }
 }

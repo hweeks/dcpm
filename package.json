@@ -5,13 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "lint": "yarn workspaces foreach -piv -j 32 run lint",
-    "dev": "yarn workspaces foreach -piv -j 32 run dev",
+    "lint": "yarn workspaces foreach -piv -j unlimited run lint",
+    "dev": "yarn workspaces foreach -piv -j unlimited run dev",
     "lint:commit": "commitlint --from=HEAD~1",
-    "build": "yarn workspaces foreach -piv -j 32 run build",
-    "build:tools": "yarn workspaces foreach -piv -j 32 --topological-dev run build-tool",
-    "test": "yarn workspaces foreach -piv -j 32 run test",
-    "test:publish": "yarn workspaces foreach -piv -j 32 run prepublishOnly",
+    "build": "yarn workspaces foreach -piv -j unlimited run build",
+    "build:tools": "yarn workspaces foreach -piv -j unlimited --topological-dev run build-tool",
+    "test": "yarn workspaces foreach -piv -j unlimited run test",
+    "test:publish": "yarn workspaces foreach -piv -j unlimited run prepublishOnly",
     "release": "yarn workspaces foreach -v run semantic-release",
     "commit": "git-cz",
     "emulate:ci": "yarn lint && yarn test && yarn test:publish && yarn release"
@@ -28,7 +28,7 @@
     "eslint-plugin-react": "7.19.0",
     "node-gyp": "8.4.1",
     "prettier": "2.5.1",
-    "typescript": "3.9.10"
+    "typescript": "4.5.4"
   },
   "config": {
     "commitizen": {
@@ -38,7 +38,7 @@
   "resolutions": {
     "@types/node": "12.12.36"
   },
-  "packageManager": "yarn@3.1.0",
+  "packageManager": "yarn@3.1.1",
   "workspaces": [
     "backend",
     "cli",
