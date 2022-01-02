@@ -4,12 +4,11 @@ import multer from "multer";
 import GridFsStorage from "multer-gridfs-storage";
 import Grid from "gridfs-stream";
 import { logger } from "./log";
-import { is_local_dev, is_test } from "../constants";
 import { mongo_url } from "./db-local";
 
 const connectOpts: mongoose.ConnectionOptions = { useNewUrlParser: true };
 
-let url: string = mongo_url || "";
+const url: string = mongo_url || "";
 let connection: typeof mongoose;
 let storage: GridFsStorage = new GridFsStorage({ url });
 let fileMiddleware: multer.Multer = multer({ storage });

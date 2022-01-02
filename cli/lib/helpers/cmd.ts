@@ -47,7 +47,7 @@ export const typeSafeExec = async (
     logOutput = await onComplete(cmd, options);
   } catch (error) {
     throw new Error(
-      `Command ${cmd} failed with this message: ${error.message}`
+      `Command ${cmd} failed with this message: ${(error as any).message}`
     );
   }
   return logOutput;

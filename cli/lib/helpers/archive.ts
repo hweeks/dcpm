@@ -123,7 +123,7 @@ const unarchiveSync = (pathIn: string, destination: string) => {
     zipFile
       .pipe(unzipper.Extract({ path: destination }))
       .on("finish", () => {
-        resolve();
+        resolve(true);
       })
       .on("error", (err) => {
         reject(err);

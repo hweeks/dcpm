@@ -1,16 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
-    "outDir": "./dist",
-    "rootDir": "./lib",
-    "strict": true,
-    "typeRoots": ["./types", "./node_modules/@types"],
-    "types": ["@types/jest", "@types/node"],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false
-  },
+  "extends": "./tsconfig.json",
   "exclude": ["__tests__", "setup"]
 }
