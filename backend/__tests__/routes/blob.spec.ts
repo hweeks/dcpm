@@ -31,7 +31,7 @@ describe("Blobs", () => {
         try {
           parseInput(configObject as ParsingInput);
         } catch (error) {
-          message = error.message;
+          message = (error as any).message;
         }
         expect(message).toContain(expected);
       }

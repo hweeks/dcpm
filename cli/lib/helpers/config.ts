@@ -36,7 +36,7 @@ export class DcpmConfig {
       configFile = JSON.parse(configString) as unknown as DcpmConfigFile;
     } catch (err) {
       console.log(
-        `We didn't find a file at ${this.path}, we're gonna make one. Deets: ${err.message}`
+        `We didn't find a file at ${this.path}, we're gonna make one. Deets: ${(err as any).message}`
       );
       configFile = {};
       await syncWrite(this.path, JSON.stringify(configFile, null, 2));

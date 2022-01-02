@@ -35,7 +35,7 @@ export const getCommand = async (
       `Managed to grab ${packageName} at version ${packageVersion}, just barely.`
     );
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(
       message ||
         "We blew up trying to get your package, but I have no idea why."
@@ -75,7 +75,7 @@ export const publishCommand = async () => {
     await Blob.add(blobPayload, currentConfig.token || "");
     log(`Published ${manifestInfo.about.name} to ${blobUrl}, nice.`);
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(
       message ||
         "We blew up trying to publish your package, but I have no idea why."
@@ -94,7 +94,7 @@ export const loginOrCreateCommand = async (
     await BuiltConfig.setConfig({ token });
     log(`Looks like we _just_ managed to get ${username} all logged in.`);
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     if (message.includes(username)) {
       const newToken = await User.create(username, password, blobUrl);
       await BuiltConfig.setConfig({ token: newToken });
@@ -130,7 +130,7 @@ export const modifyPermsCommand = async (
       } ${packageName}`
     );
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(
       message ||
         "We blew up trying to modify package permissions, but I have no idea why."
@@ -152,7 +152,7 @@ export const executeCommand = async (script: string) => {
       log(`We have now run ${script}, I hope you got what you wanted from it.`);
     }
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(
       message || "We blew up trying to run a script, but I have no idea why."
     );
@@ -189,7 +189,7 @@ export const runSearch = async (query: any) => {
       `You searched for ${query}, but that's something I can't find...`
     );
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(message || "We blew up trying to run search, but I have no idea why.");
   }
 };
@@ -210,7 +210,7 @@ export const runSetup = async () => {
       log("There is not any setup script in this package. Sorry.");
     }
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(message || "We blew up trying to run setup, but I have no idea why.");
   }
 };
@@ -240,7 +240,7 @@ export const buildAdditionalConfigs = async () => {
       );
     }
   } catch (error) {
-    const { message } = error;
+    const { message } = (error as any);
     warn(
       message ||
         "We blew up trying to build more configs, but I have no idea why."
