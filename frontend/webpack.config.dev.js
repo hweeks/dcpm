@@ -34,6 +34,7 @@ module.exports = {
     },
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     plugins: [PnpWebpackPlugin],
+    fallback: { "path": require.resolve("path-browserify") }
   },
   resolveLoader: {
     plugins: [PnpWebpackPlugin.moduleLoader(module)],
@@ -42,12 +43,12 @@ module.exports = {
     splitChunks: {
       chunks: "all",
       minSize: 30000,
-      maxSize: 0,
+      maxSize: 300000,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: "-",
-      name: true,
+      name: 'dcpm',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
