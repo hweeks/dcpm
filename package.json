@@ -43,6 +43,7 @@
     "backend",
     "cli",
     "docs",
+    "dox",
     "frontend"
   ],
   "devDependencies": {
