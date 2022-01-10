@@ -677,7 +677,7 @@ __metadata:
     mongodb: 3.7.3
     mongodb-memory-server: 8.0.4
     mongoose: 5.13.13
-    multer: 1.4.2
+    multer: 1.4.4
     multer-gridfs-storage: 4.0.1
     nodemon: 2.0.15
     rimraf: 3.0.2
@@ -12201,7 +12201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:>=0.5 0, mkdirp@npm:^0.5.5, mkdirp@npm:~0.5.0, mkdirp@npm:~0.5.1":
+"mkdirp@npm:>=0.5 0, mkdirp@npm:^0.5.4, mkdirp@npm:^0.5.5, mkdirp@npm:~0.5.0, mkdirp@npm:~0.5.1":
   version: 0.5.5
   resolution: "mkdirp@npm:0.5.5"
   dependencies:
@@ -12504,19 +12504,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"multer@npm:1.4.2":
-  version: 1.4.2
-  resolution: "multer@npm:1.4.2"
+"multer@npm:1.4.4":
+  version: 1.4.4
+  resolution: "multer@npm:1.4.4"
   dependencies:
     append-field: ^1.0.0
     busboy: ^0.2.11
     concat-stream: ^1.5.2
-    mkdirp: ^0.5.1
+    mkdirp: ^0.5.4
     object-assign: ^4.1.1
     on-finished: ^2.3.0
     type-is: ^1.6.4
     xtend: ^4.0.0
-  checksum: a77ba79ec96b8376fdd09531c1cfd36f1d04e195b5e944a2cd4979c992cdc9b521887abed0893f75a21c59bb4dffe6356046da966059c268801d1f7c83e6ea16
+  checksum: b5550d250aeee9c4d630eaecd133af0899239f6b10cec4b448ddd0a808025b383520b8227198a8612f60c2cd2094bcb60de93d973084f889d4e40efe6dbd641e
   languageName: node
   linkType: hard
 
