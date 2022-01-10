@@ -1,71 +1,71 @@
-import { Document, Schema, Model, model, Types, } from "mongoose";
+import { Document, Schema, Model, model, Types } from "mongoose";
 
 export const BlobSchema = new Schema({
   owner: {
     type: Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: "User",
+    required: true,
   },
   name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   about: String,
   versions: [
     {
       version: {
         type: String,
-        required: true
+        required: true,
       },
       file: {
         type: Types.ObjectId,
-        required: true
+        required: true,
       },
-    }
+    },
   ],
   scm: {
     type: String,
-    required: true
+    required: true,
   },
   authors: [
     {
       type: Types.ObjectId,
-      ref: 'User'
-    }
+      ref: "User",
+    },
   ],
   tags: [String],
   downloads: {
     type: Number,
     default: 0,
-  }
+  },
 });
 
 export interface VersionConfig {
   version: string;
-  file: Types.ObjectId,
+  file: Types.ObjectId;
 }
 
 export interface IBlobPayload {
-  owner: Types.ObjectId,
-  name: string,
-  about?: string,
-  versions: VersionConfig[],
-  scm: string,
-  authors: Types.ObjectId[],
-  tags: string[],
-  downloads?: number
+  owner: Types.ObjectId;
+  name: string;
+  about?: string;
+  versions: VersionConfig[];
+  scm: string;
+  authors: Types.ObjectId[];
+  tags: string[];
+  downloads?: number;
 }
 
 export interface IBlobDoc extends Document {
-  owner: Types.ObjectId,
-  name: string,
-  about?: string,
-  versions: VersionConfig[],
-  scm: string,
-  authors: Types.ObjectId[],
-  tags: string[],
-  downloads?: number
+  owner: Types.ObjectId;
+  name: string;
+  about?: string;
+  versions: VersionConfig[];
+  scm: string;
+  authors: Types.ObjectId[];
+  tags: string[];
+  downloads?: number;
 }
 
 export const Blob = model<IBlobDoc, Model<IBlobDoc>>("Blob", BlobSchema);
