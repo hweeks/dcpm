@@ -51,7 +51,7 @@
     "@types/bunyan": "1.8.8",
     "@types/express": "4.17.13",
     "@types/gridfs-stream": "0.5.35",
-    "@types/helmet": "0.0.45",
+    "@types/helmet": "0.0.48",
     "@types/jest": "27.4.0",
     "@types/jws": "3.2.1",
     "@types/mongodb": "3.6.20",

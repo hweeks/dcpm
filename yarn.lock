@@ -652,7 +652,7 @@ __metadata:
     "@types/bunyan": 1.8.8
     "@types/express": 4.17.13
     "@types/gridfs-stream": 0.5.35
-    "@types/helmet": 0.0.45
+    "@types/helmet": 0.0.48
     "@types/jest": 27.4.0
     "@types/jws": 3.2.1
     "@types/mongodb": 3.6.20
@@ -2133,12 +2133,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/helmet@npm:0.0.45":
-  version: 0.0.45
-  resolution: "@types/helmet@npm:0.0.45"
+"@types/helmet@npm:0.0.48":
+  version: 0.0.48
+  resolution: "@types/helmet@npm:0.0.48"
   dependencies:
     "@types/express": "*"
-  checksum: c9a208ccb925afcf8ad72c0eeb57a2d467e646cecd79ede2736e25935cd5ace5161b0ce32dd3b03b2a1b418eb4b48e591519106fbc24c02cbbb7def4ef2e9816
+  checksum: c74dfebf7b8ee0609e2600345a73f8567b7d35b5bf1f76eaa66e377f13d9b4eb33c88bb676eb46efe419e09cc00d4e1bf38ad54a1dea9ee282f1e1af96012c5a
   languageName: node
   linkType: hard
 
