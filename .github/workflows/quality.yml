@@ -1,0 +1,33 @@
+name: code quality
+
+on: pull_request
+
+jobs:
+  test-matrix:
+    strategy:
+      matrix:
+        node: ["16"]
+    name: quality on node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: select node version
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: cache build artifacts
+        id: cache-build-stuff
+        uses: actions/cache@v1
+        with:
+          path: ./.yarn
+          key: build-${{ matrix.node }}-${{hashFiles('./yarn.lock')}}
+          restore-keys: build-${{ matrix.node }}-${{hashFiles('./yarn.lock')}}
+      - name: install
+        run: yarn install --immutable
+      - name: lint
+        run: yarn lint
+      - name: test
+        run: yarn test
