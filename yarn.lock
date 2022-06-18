@@ -663,7 +663,7 @@ __metadata:
     "@types/uuid": 3.4.8
     "@typescript-eslint/eslint-plugin": ^5.8.1
     "@typescript-eslint/parser": ^5.8.1
-    bcrypt: 3.0.8
+    bcrypt: 5.0.0
     body-parser: 1.19.0
     bson: 4.6.0
     bunyan: 1.8.15
@@ -3769,13 +3769,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bcrypt@npm:3.0.8":
-  version: 3.0.8
-  resolution: "bcrypt@npm:3.0.8"
+"bcrypt@npm:5.0.0":
+  version: 5.0.0
+  resolution: "bcrypt@npm:5.0.0"
   dependencies:
-    nan: 2.14.0
-    node-pre-gyp: 0.14.0
-  checksum: 4bf5897db814a06589d48ee194c3d64688e44249dd095fafd0edf1eaadfca99520a61dc9bf5e13ae6918a312f592dc914a62823633be04bd5bfa60a90440772c
+    node-addon-api: ^3.0.0
+    node-pre-gyp: 0.15.0
+  checksum: 5e088c6f0d5c66c5ee29aef9ebae5bf4b38d87a25384a5118faa349d27ad2c04e5db6c384ad78ed5a9b90a9f027de8d2198f9f69775136cdf328c1d079ca196c
   languageName: node
   linkType: hard
 
@@ -12041,6 +12041,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimist@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
+  checksum: d15428cd1e11eb14e1233bcfb88ae07ed7a147de251441d61158619dfb32c4d7e9061d09cab4825fdee18ecd6fce323228c8c47b5ba7cd20af378ca4048fb3fb
+  languageName: node
+  linkType: hard
+
 "minipass-collect@npm:^1.0.2":
   version: 1.0.2
   resolution: "minipass-collect@npm:1.0.2"
@@ -12209,6 +12216,17 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 3bce20ea525f9477befe458ab85284b0b66c8dc3812f94155af07c827175948cdd8114852ac6c6d82009b13c1048c37f6d98743eb019651ee25c39acc8aabe7d
+  languageName: node
+  linkType: hard
+
+"mkdirp@npm:^0.5.3":
+  version: 0.5.6
+  resolution: "mkdirp@npm:0.5.6"
+  dependencies:
+    minimist: ^1.2.6
+  bin:
+    mkdirp: bin/cmd.js
+  checksum: 0c91b721bb12c3f9af4b77ebf73604baf350e64d80df91754dc509491ae93bf238581e59c7188360cec7cb62fc4100959245a42cfe01834efedc5e9d068376c2
   languageName: node
   linkType: hard
 
@@ -12573,15 +12591,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:2.14.0":
-  version: 2.14.0
-  resolution: "nan@npm:2.14.0"
-  dependencies:
-    node-gyp: latest
-  checksum: 6dfd00d9bf71769898dfab21ef9d2ef278b392c586147616a718b995d6a582f5caa7f2ca0f83ce956fb0def698aca813b2b6fd4598125cd16bdc85924c34a37d
-  languageName: node
-  linkType: hard
-
 "nan@npm:^2.14.0":
   version: 2.15.0
   resolution: "nan@npm:2.15.0"
@@ -12626,7 +12635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"needle@npm:^2.2.1":
+"needle@npm:^2.5.0":
   version: 2.9.1
   resolution: "needle@npm:2.9.1"
   dependencies:
@@ -12698,6 +12707,15 @@ __metadata:
   version: 2.1.0
   resolution: "nocache@npm:2.1.0"
   checksum: 702ad516a7f8b21364c3e9b6ed982b0dfbcbdad9c28ed35331c4025025c729eb9d93523c3370947c5c8391ae33c6f69b67e35ef301d0e9424cee84f0b1d015c2
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^3.0.0":
+  version: 3.2.1
+  resolution: "node-addon-api@npm:3.2.1"
+  dependencies:
+    node-gyp: latest
+  checksum: 2369986bb0881ccd9ef6bacdf39550e07e089a9c8ede1cbc5fc7712d8e2faa4d50da0e487e333d4125f8c7a616c730131d1091676c9d499af1d74560756b4a18
   languageName: node
   linkType: hard
 
@@ -12833,13 +12851,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-pre-gyp@npm:0.14.0":
-  version: 0.14.0
-  resolution: "node-pre-gyp@npm:0.14.0"
+"node-pre-gyp@npm:0.15.0":
+  version: 0.15.0
+  resolution: "node-pre-gyp@npm:0.15.0"
   dependencies:
     detect-libc: ^1.0.2
-    mkdirp: ^0.5.1
-    needle: ^2.2.1
+    mkdirp: ^0.5.3
+    needle: ^2.5.0
     nopt: ^4.0.1
     npm-packlist: ^1.1.6
     npmlog: ^4.0.2
@@ -12849,7 +12867,7 @@ __metadata:
     tar: ^4.4.2
   bin:
     node-pre-gyp: ./bin/node-pre-gyp
-  checksum: 2bdf1c51fbe96d54b70083818f92717cb97285a5e5b2543c2da4c9672a0af1003c77667df502593af317fa99a616b57af022617c8f288ea2ab11d11890c4b2f3
+  checksum: dc385eb2dbce7302ca587e84410c59086908af0a3a78613563f36bdf9d9aa15dc493b63618d7b8cceb6a984c55ece51619edd11cd0ec98c552ba4a7ea881703e
   languageName: node
   linkType: hard
 
