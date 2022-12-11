@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@dcpm/backend": "workspace:*",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "helmet": "^3.23.3",
     "http-proxy-middleware": "^0.21.0",
     "react": "^17.0.2",
