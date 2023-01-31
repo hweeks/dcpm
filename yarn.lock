@@ -676,7 +676,7 @@ __metadata:
     jws: 3.2.2
     mongodb: 3.7.3
     mongodb-memory-server: 8.0.4
-    mongoose: 5.13.13
+    mongoose: 5.13.15
     multer: 1.4.4
     multer-gridfs-storage: 4.0.1
     nodemon: 2.0.15
@@ -12392,9 +12392,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:5.13.13":
-  version: 5.13.13
-  resolution: "mongoose@npm:5.13.13"
+"mongoose@npm:5.13.15":
+  version: 5.13.15
+  resolution: "mongoose@npm:5.13.15"
   dependencies:
     "@types/bson": 1.x || 4.0.x
     "@types/mongodb": ^3.5.27
@@ -12410,7 +12410,7 @@ __metadata:
     safe-buffer: 5.2.1
     sift: 13.5.2
     sliced: 1.0.1
-  checksum: bf72bd2aae1bcf761b51d90b574dbac06bc0ee37afe3bd712147804bc3da7081d4534634324f920714a513f42867bb07eec8bab15034daaebb99a5c8129e7080
+  checksum: 74edc47c7819b82220e44402b3607faee622dfe6ac52947e812a7a179feebc295d1f7e7802da9353f8fc1f095b1b4eed775ed2c3914ee4baa332a36cb4679e18
   languageName: node
   linkType: hard
 
