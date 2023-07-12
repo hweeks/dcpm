@@ -41,7 +41,7 @@
     "mongoose": "5.13.13",
     "multer": "1.4.4",
     "multer-gridfs-storage": "4.0.1",
-    "semver": "6.3.0",
+    "semver": "6.3.1",
     "uuid": "3.4.0"
   },
   "devDependencies": {
