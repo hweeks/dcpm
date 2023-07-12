@@ -681,7 +681,7 @@ __metadata:
     multer-gridfs-storage: 4.0.1
     nodemon: 2.0.15
     rimraf: 3.0.2
-    semver: 6.3.0
+    semver: 6.3.1
     ts-jest: 27.1.2
     ts-node: 10.4.0
     typescript: ^4.5.4
@@ -722,7 +722,7 @@ __metadata:
     node-fetch: 2.6.0
     nodemon: 2.0.15
     semantic-release: 17.0.4
-    semver: 7.1.1
+    semver: 7.5.2
     ts-jest: 27.1.2
     ts-node: 10.4.0
     typescript: 4.5.4
@@ -16087,12 +16087,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.1.1":
-  version: 7.1.1
-  resolution: "semver@npm:7.1.1"
+"semver@npm:6.3.1":
+  version: 6.3.1
+  resolution: "semver@npm:6.3.1"
   bin:
     semver: bin/semver.js
-  checksum: 58a3082bb3087b63b06a69649578477129c39990aa8a4f581a34c4f75ba4b3f6b2d55d835f31d8c18eb289ad347971d21a15b176dd9ac8d7808d9c4d61611048
+  checksum: ae47d06de28836adb9d3e25f22a92943477371292d9b665fb023fae278d345d508ca1958232af086d85e0155aee22e313e100971898bbb8d5d89b8b1d4054ca2
+  languageName: node
+  linkType: hard
+
+"semver@npm:7.5.2":
+  version: 7.5.2
+  resolution: "semver@npm:7.5.2"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 3fdf5d1e6f170fe8bcc41669e31787649af91af7f54f05c71d0865bb7aa27e8b92f68b3e6b582483e2c1c648008bc84249d2cd86301771fe5cbf7621d1fe5375
   languageName: node
   linkType: hard
 
