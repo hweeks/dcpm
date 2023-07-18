@@ -676,7 +676,7 @@ __metadata:
     jws: 3.2.2
     mongodb: 3.7.3
     mongodb-memory-server: 8.0.4
-    mongoose: 5.13.13
+    mongoose: 5.13.20
     multer: 1.4.4
     multer-gridfs-storage: 4.0.1
     nodemon: 2.0.15
@@ -12351,6 +12351,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mongodb@npm:3.7.4":
+  version: 3.7.4
+  resolution: "mongodb@npm:3.7.4"
+  dependencies:
+    bl: ^2.2.1
+    bson: ^1.1.4
+    denque: ^1.4.1
+    optional-require: ^1.1.8
+    safe-buffer: ^5.1.2
+    saslprep: ^1.0.0
+  dependenciesMeta:
+    saslprep:
+      optional: true
+  peerDependenciesMeta:
+    aws4:
+      optional: true
+    bson-ext:
+      optional: true
+    kerberos:
+      optional: true
+    mongodb-client-encryption:
+      optional: true
+    mongodb-extjson:
+      optional: true
+    snappy:
+      optional: true
+  checksum: e9b4e932f40029d2fc7b2247737f4fc6fc8951c0ac86530e19d305b58dc8a8251bb42a73af2e9da14fd606856bf240c80951fec9a870719481c0cf2d78327547
+  languageName: node
+  linkType: hard
+
 "mongodb@npm:4.2.2, mongodb@npm:>=2, mongodb@npm:^4.1.3":
   version: 4.2.2
   resolution: "mongodb@npm:4.2.2"
@@ -12392,15 +12422,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mongoose@npm:5.13.13":
-  version: 5.13.13
-  resolution: "mongoose@npm:5.13.13"
+"mongoose@npm:5.13.20":
+  version: 5.13.20
+  resolution: "mongoose@npm:5.13.20"
   dependencies:
     "@types/bson": 1.x || 4.0.x
     "@types/mongodb": ^3.5.27
     bson: ^1.1.4
     kareem: 2.3.2
-    mongodb: 3.7.3
+    mongodb: 3.7.4
     mongoose-legacy-pluralize: 1.0.2
     mpath: 0.8.4
     mquery: 3.2.5
@@ -12410,7 +12440,7 @@ __metadata:
     safe-buffer: 5.2.1
     sift: 13.5.2
     sliced: 1.0.1
-  checksum: bf72bd2aae1bcf761b51d90b574dbac06bc0ee37afe3bd712147804bc3da7081d4534634324f920714a513f42867bb07eec8bab15034daaebb99a5c8129e7080
+  checksum: 960326fc34d0d8b5c7cf9e97148e1a286aa13b1df96f51c2af83fa64d4e586625616c370ac69f8a64fc05bf3ec64ada0a5b79c85a03a29866ef5ae62d16cbde9
   languageName: node
   linkType: hard
 
