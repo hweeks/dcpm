@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux'
-import { search } from './search'
+import { combineReducers } from "redux";
+import { search } from "./search";
 
-export const reducer = combineReducers({search})
+export const reducer = combineReducers({ search });
 
-export type RootState = ReturnType<typeof reducer>
+export type RootState = ReturnType<typeof reducer>;
