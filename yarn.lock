@@ -659,7 +659,7 @@ __metadata:
     "@types/multer": 1.4.7
     "@types/multer-gridfs-storage": 4.0.4
     "@types/node": 17.0.6
-    "@types/semver": 6.2.1
+    "@types/semver": 7.5.8
     "@types/uuid": 3.4.8
     "@typescript-eslint/eslint-plugin": ^5.8.1
     "@typescript-eslint/parser": ^5.8.1
@@ -704,7 +704,7 @@ __metadata:
     "@types/mustache": 4.1.2
     "@types/node": 17.0.6
     "@types/node-fetch": 2.5.6
-    "@types/semver": 6.2.1
+    "@types/semver": 7.5.8
     "@types/unzipper": 0.10.3
     "@types/yargs": 13.0.8
     "@typescript-eslint/eslint-plugin": 5.8.1
@@ -722,7 +722,7 @@ __metadata:
     node-fetch: 2.6.0
     nodemon: 2.0.15
     semantic-release: 17.0.4
-    semver: 7.1.1
+    semver: 7.6.0
     ts-jest: 27.1.2
     ts-node: 10.4.0
     typescript: 4.5.4
@@ -2478,10 +2478,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:6.2.1":
-  version: 6.2.1
-  resolution: "@types/semver@npm:6.2.1"
-  checksum: ae1f6354da33941af26cd745c09b5691e4d2debfa378402615fec2081a6452e07aed28ff5fb8e2a8ee255f9a79ab871ec4bc7615c3c7342c53ef4bb3ad55092a
+"@types/semver@npm:7.5.8":
+  version: 7.5.8
+  resolution: "@types/semver@npm:7.5.8"
+  checksum: ea6f5276f5b84c55921785a3a27a3cd37afee0111dfe2bcb3e03c31819c197c782598f17f0b150a69d453c9584cd14c4c4d7b9a55d2c5e6cacd4d66fdb3b3663
   languageName: node
   linkType: hard
 
@@ -16087,12 +16087,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.1.1":
-  version: 7.1.1
-  resolution: "semver@npm:7.1.1"
+"semver@npm:7.6.0":
+  version: 7.6.0
+  resolution: "semver@npm:7.6.0"
+  dependencies:
+    lru-cache: ^6.0.0
   bin:
     semver: bin/semver.js
-  checksum: 58a3082bb3087b63b06a69649578477129c39990aa8a4f581a34c4f75ba4b3f6b2d55d835f31d8c18eb289ad347971d21a15b176dd9ac8d7808d9c4d61611048
+  checksum: 7427f05b70786c696640edc29fdd4bc33b2acf3bbe1740b955029044f80575fc664e1a512e4113c3af21e767154a94b4aa214bf6cd6e42a1f6dba5914e0b208c
   languageName: node
   linkType: hard
 
