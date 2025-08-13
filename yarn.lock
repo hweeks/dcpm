@@ -759,7 +759,7 @@ __metadata:
     express: ^4.17.2
     helmet: ^3.23.3
     html-webpack-plugin: 5.5.0
-    http-proxy-middleware: ^0.21.0
+    http-proxy-middleware: ^2.0.0
     hweeks-semantic-release-monorepo: 1.0.0
     nodemon: 2.0.15
     path-browserify: 1.0.1
@@ -2166,7 +2166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:^1.17.3, @types/http-proxy@npm:^1.17.5":
+"@types/http-proxy@npm:^1.17.5":
   version: 1.17.8
   resolution: "@types/http-proxy@npm:1.17.8"
   dependencies:
@@ -8664,19 +8664,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:^0.21.0":
-  version: 0.21.0
-  resolution: "http-proxy-middleware@npm:0.21.0"
-  dependencies:
-    "@types/http-proxy": ^1.17.3
-    http-proxy: ^1.18.0
-    is-glob: ^4.0.1
-    lodash: ^4.17.15
-    micromatch: ^4.0.2
-  checksum: a83da87a1e21ec5c56141c7b75e084190accdfb5a243e3ddbb71a759615f30510dcaccc6501cea4275f2dd1502bab3bedb8ec345ae6f7c588ef5a6c947ba1cb3
-  languageName: node
-  linkType: hard
-
 "http-proxy-middleware@npm:^2.0.0":
   version: 2.0.1
   resolution: "http-proxy-middleware@npm:2.0.1"
@@ -8690,7 +8677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy@npm:^1.18.0, http-proxy@npm:^1.18.1":
+"http-proxy@npm:^1.18.1":
   version: 1.18.1
   resolution: "http-proxy@npm:1.18.1"
   dependencies:
