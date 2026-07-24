@@ -4,9 +4,9 @@
 
 This is a tool for sharing configuration and setup for docker-compose. It comes in three pieces:
 
-  1. the backend which hosts our files
-  1. the frontend for searching and view packages
-  1. the cli because i like cli stuff
+1. the backend which hosts our files
+1. the frontend for searching and view packages
+1. the cli because i like cli stuff
 
 ## What Can It Do?
 
@@ -24,9 +24,9 @@ That's cool, and I'm really glad you feel that way. Let's talk about how it work
 
 ### Tools Needed
 
-  * docker
-  * docker-compose
-  * yarn
+- docker
+- docker-compose
+- yarn
 
 ### Local Dev Flow
 
@@ -42,10 +42,10 @@ From the root, and everything else should be good to go!
 
 You would:
 
-  1. `cd backend`
-  1. `yarn dev`
-  1. `cd ../frontend`
-  1. `yarn dev`
+1. `cd backend`
+1. `yarn dev`
+1. `cd ../frontend`
+1. `yarn dev`
 
 Now you can build out frontend features against your backend.
 
@@ -63,9 +63,16 @@ When a merge to master happens and all tests/lint passes we autodeploy to npm. C
 
 The CI will:
 
-  * install all packages
-  * check your commit aligns with expectations
-  * lint and test them
-  * deploy new docker builds for all packages
+- install all packages
+- check your commit aligns with expectations
+- lint and test them
+- deploy new docker builds for all packages
 
 Please make sure your commit passes :)
+
+## TODO
+
+1. update to y3rn
+1. remove lerna
+1. update CI/CD
+1. update and add deployment tooling

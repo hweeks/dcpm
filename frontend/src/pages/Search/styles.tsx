@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const NoResults = styled.div`
-  padding: ${props => props.theme.spacing2};
+  padding: ${(props) => props.theme.spacing2};
   text-align: center;
-`
+`;

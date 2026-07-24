@@ -5,3 +5,4 @@ dist
 .env
 static/*.js
 static/index.html
+static/*.txt

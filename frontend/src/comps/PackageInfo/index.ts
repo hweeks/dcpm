@@ -1,1 +1,1 @@
-export * from './PackageInfo'
+export * from "./PackageInfo";
