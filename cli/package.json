@@ -59,7 +59,7 @@
     "@types/mustache": "4.1.2",
     "@types/node": "17.0.6",
     "@types/node-fetch": "2.5.6",
-    "@types/semver": "6.2.1",
+    "@types/semver": "7.8.0",
     "@types/unzipper": "0.10.3",
     "@types/yargs": "13.0.8",
     "@typescript-eslint/eslint-plugin": "5.8.1",
