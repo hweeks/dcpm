@@ -10,7 +10,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": [
-    "__tests__"
-  ]
+  "exclude": ["__tests__"]
 }
