@@ -37,7 +37,7 @@
     "archiver": "3.1.1",
     "chalk": "3.0.0",
     "cli-table": "0.3.1",
-    "form-data": "3.0.1",
+    "form-data": "3.0.5",
     "glob": "7.1.6",
     "inquirer": "7.0.1",
     "js-yaml": "3.13.1",
