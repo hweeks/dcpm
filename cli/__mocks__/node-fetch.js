@@ -1,35 +1,36 @@
-let fetchResponses = {}
-let fetchValues = {}
+let fetchResponses = {};
+let fetchValues = {};
 
 function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const fetchFunc = async (url, options) => {
   fetchValues[url] = {
-    url, options
-  }
-  await timeout(0)
-  const hasValues = fetchResponses[url]
+    url,
+    options,
+  };
+  await timeout(0);
+  const hasValues = fetchResponses[url];
   return {
     ok: hasValues.ok || true,
     json() {
-      return hasValues || options
-    }
-  }
-}
+      return hasValues || options;
+    },
+  };
+};
 
 const setResponse = (url, value) => {
-  fetchResponses[url] = value
-}
+  fetchResponses[url] = value;
+};
 
 const getConfig = () => {
-  return fetchValues
-}
+  return fetchValues;
+};
 
 const clearAll = () => {
-  fetchResponses = {}
-  fetchValues = {}
-}
+  fetchResponses = {};
+  fetchValues = {};
+};
 
-module.exports = Object.assign(fetchFunc, {setResponse, getConfig, clearAll})
+module.exports = Object.assign(fetchFunc, { setResponse, getConfig, clearAll });

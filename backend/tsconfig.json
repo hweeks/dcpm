@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "lib": ["es2021"],
+    "module": "es2022",
+    "target": "es2021",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./lib",
-    "strict": true,
-    "typeRoots": ["./types", "./node_modules/@types"],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["@types/jest", "node"]
   },
-  "exclude": [
-    "setup",
-    "__tests__"
-  ]
+  "include": ["./lib/global.d.ts", "./**/*.ts"]
 }

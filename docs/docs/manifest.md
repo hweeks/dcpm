@@ -8,30 +8,31 @@ A manifest for a deployed package looks like this:
 
 ```yml
 about:
-  name: 'My fancy config'
-  author: 'hweeks <root@hweeks.com>'
-  about: './README.md'
-  version: '1.0.0'
+  name: "My fancy config"
+  author: "hweeks <root@hweeks.com>"
+  about: "./README.md"
+  version: "1.0.0"
   tags:
-    - 'something'
-    - 'something else'
+    - "something"
+    - "something else"
 remotes:
-  scm: 'https://github.com/me/my-fancy-config'
-  blobs: 'https://blobs.dcpm.dev'
-config: './docker-compose.yml'
+  scm: "https://github.com/me/my-fancy-config"
+  blobs: "https://blobs.dcpm.dev"
+config: "./docker-compose.yml"
 overrides:
-  dev: './docker-compose.dev.yml'
-  stable: './docker-compose.stable.yml'
+  dev: "./docker-compose.dev.yml"
+  stable: "./docker-compose.stable.yml"
 scripts:
-  configure: './some-bash-file.sh'
+  configure: "./some-bash-file.sh"
 supports:
-  docker: '19.03.1'
-  docker-compose: '1.24.1'
+  docker: "19.03.1"
+  docker-compose: "1.24.1"
 env:
   - name: SOME_VAR
     message: What is your favorite color?
     default: red
 ```
+
 ### about
 
 The about object defines your project in human readable terms. If you have a `readme.md` in the root we will display it as the about page of your config through [blob search](https://search.dcpm.dev)

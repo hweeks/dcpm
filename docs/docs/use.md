@@ -31,4 +31,3 @@ This will allow you to add another user to publish your package.
 Use: `dcpm remove-user [user] [name]`
 
 This will allow you to remove a user from the currently authorized ones.
-

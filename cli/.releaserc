@@ -1,3 +1,4 @@
 {
-  "tagFormat": "@dcpm/cli-v${version}"
+  "tagFormat": "@dcpm/cli-v${version}",
+  "branches": ["main"]
 }

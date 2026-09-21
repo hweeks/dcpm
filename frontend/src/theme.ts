@@ -1,4 +1,4 @@
-const heightBase = 10
+const heightBase = 10;
 
 const heights = {
   height0: `${heightBase * 1}px`,
@@ -10,12 +10,12 @@ const heights = {
   height6: `${heightBase * 3}px`,
   height7: `${heightBase * 3.5}px`,
   height8: `${heightBase * 4}px`,
-  height100: '100%',
-  heightAuto: 'auto',
-  heightFull: '100vh',
-}
+  height100: "100%",
+  heightAuto: "auto",
+  heightFull: "100vh",
+};
 
-const widthBase = 4
+const widthBase = 4;
 
 const widths = {
   width0: `${widthBase * 1}px`,
@@ -27,12 +27,12 @@ const widths = {
   width6: `${widthBase * 7}px`,
   width7: `${widthBase * 8}px`,
   width8: `${widthBase * 9}px`,
-  width100: '100%',
-  widthAuto: 'auto',
-  widthFull: '100vw',
-}
+  width100: "100%",
+  widthAuto: "auto",
+  widthFull: "100vw",
+};
 
-const spacingBase = 4
+const spacingBase = 4;
 
 const spacing = {
   spacing0: `${spacingBase * 1}px`,
@@ -46,9 +46,9 @@ const spacing = {
   spacing8: `${spacingBase * 6}px`,
   spacing9: `${spacingBase * 7}px`,
   spacing10: `${spacingBase * 8}px`,
-}
+};
 
-const fontBase = 8
+const fontBase = 8;
 
 const fonts = {
   font0: `${fontBase * 1}px`,
@@ -63,28 +63,27 @@ const fonts = {
   mainFont: "'Montserrat', sans-serif",
   secondaryFont: "'Crimson Text', serif",
   codeFont: "'Cousine', monospace",
-  baseWeight: '400',
-  heavyWeight: '600',
-  heavyCode: '700'
-}
+  baseWeight: "400",
+  heavyWeight: "600",
+  heavyCode: "700",
+};
 
 const colors = {
-  primary: '#fb8c00',
-  accent: '#ff7043',
-  success: '#00c853',
-  warn: '#ffd600',
-  error: '#ff1744',
-  white: '#ffffff',
-  black: '#000000',
-  fontColor: '#666',
-  codeBg: '#CCC'
-}
-
+  primary: "#fb8c00",
+  accent: "#ff7043",
+  success: "#00c853",
+  warn: "#ffd600",
+  error: "#ff1744",
+  white: "#ffffff",
+  black: "#000000",
+  fontColor: "#666",
+  codeBg: "#CCC",
+};
 
 export const theme = {
   ...heights,
   ...widths,
   ...spacing,
   ...fonts,
-  ...colors
-}
+  ...colors,
+};

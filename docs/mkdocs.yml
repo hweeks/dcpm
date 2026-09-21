@@ -1,17 +1,17 @@
 site_name: Docker Compose Package Manager
-repo_name: 'hweeks/dcpm'
-repo_url: 'https://github.com/hweeks/dcpm/tree/master/docs'
-site_url: 'https://docs.dcpm.dev'
+repo_name: "hweeks/dcpm"
+repo_url: "https://github.com/hweeks/dcpm/tree/master/docs"
+site_url: "https://docs.dcpm.dev"
 theme:
   logo:
-    icon: 'tab'
+    icon: "tab"
   palette:
-    primary: 'orange'
-    accent: 'deep orange'
-  name: 'material'
+    primary: "orange"
+    accent: "deep orange"
+  name: "material"
   font:
-    text: 'Montserrat'
-    code: 'Cousine'
+    text: "Montserrat"
+    code: "Cousine"
 markdown_extensions:
   - admonition
   - codehilite:

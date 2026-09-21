@@ -73,3 +73,8 @@ Removal can be accomplished via:
 ## warning
 
 This project is in a _very_ early alpha state. This stuff is liable to change at random. The docs site _should_ be up to date whenever a batch of changes comes out.
+
+# TODO
+
+1. consume exported types from other packages
+1. update as learned

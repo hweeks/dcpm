@@ -1,24 +1,24 @@
 about:
-  name: 'basic-test'
-  author: 'test <test@dcpm.dev>'
-  about: './README.md'
-  version: '1.0.0'
+  name: "basic-test"
+  author: "test <test@dcpm.dev>"
+  about: "./README.md"
+  version: "1.0.0"
   tags:
-    - 'test1'
-    - 'test2'
+    - "test1"
+    - "test2"
 scripts:
-  simpleCommand: 'ls'
+  simpleCommand: "ls"
 remotes:
-  scm: 'https://github.com/hweeks/dcpm'
-  blobs: 'https://blobs.dcpm.dev'
-config: './docker-compose.yml'
+  scm: "https://github.com/hweeks/dcpm"
+  blobs: "https://blobs.dcpm.dev"
+config: "./docker-compose.yml"
 supports:
-  docker: '19.03.1'
-  docker-compose: '1.24.1'
+  docker: "19.03.1"
+  docker-compose: "1.24.1"
 env:
   - name: SOME_VALUE
     message: what is your name
-    default: 'marsellus wallace'
+    default: "marsellus wallace"
 extraConfigs:
   - template: ./test.mustache
     output: ./test.yml

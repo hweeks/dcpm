@@ -3,14 +3,11 @@ import * as ReactDOM from "react-dom";
 import { App } from "./App";
 
 const load = () => {
-  ReactDOM.render(
-    <App />,
-    document.getElementById("home")
-  );
-}
+  ReactDOM.render(<App />, document.getElementById("home"));
+};
 
-if (document.readyState !== 'complete') {
-  document.addEventListener('DOMContentLoaded', load)
+if (document.readyState !== "complete") {
+  document.addEventListener("DOMContentLoaded", load);
 } else {
-  load()
+  load();
 }
